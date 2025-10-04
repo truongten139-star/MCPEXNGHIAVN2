@@ -4,136 +4,127 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>👾 Horror Craft Addon</title>
-
-  <!-- Font Google Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Open Graph để chia sẻ đẹp hơn -->
-  <meta property="og:title" content="👾 Horror Craft Addon">
-  <meta property="og:description" content="Minecraft PE 1.21.100 • Dark Fantasy • Kinh dị sinh tồn">
-  <meta property="og:image" content="title.png">
-  <meta property="og:type" content="website">
-
   <style>
-    body {
-      background-color: #0a0a0a;
-      color: #eee;
-      font-family: "Poppins", sans-serif;
+    /* Reset */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #0a0a0a, #1a0000);
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .logo {
+      display: block;
+      margin: 20px auto;
+      max-width: 220px;
+      filter: drop-shadow(0 0 10px #ff0000);
+    }
+
+    h1 {
       text-align: center;
+      color: #ff3333;
+      font-size: 2.2em;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px #900;
     }
 
-    header {
-      padding: 40px 10px;
-      background: linear-gradient(180deg, #2b0000, #000);
-    }
-
-    header img {
-      max-width: 400px;
-      width: 90%;
-      height: auto;
-      margin-bottom: 15px;
-      animation: fadeInDown 1.5s ease;
-    }
-
-    header p {
-      font-size: 1.2em;
+    .subtitle {
+      text-align: center;
+      font-size: 1.1em;
+      margin-bottom: 25px;
       color: #ccc;
     }
 
-    .addon-section {
-      max-width: 900px;
-      margin: 50px auto;
-      background-color: #111;
+    .card {
+      background: rgba(20, 20, 20, 0.9);
+      border: 1px solid #400;
       border-radius: 12px;
       padding: 20px;
-      box-shadow: 0 0 25px #400;
-      animation: fadeIn 1.5s ease-in-out;
-    }
-
-    .addon-section img {
-      width: 100%;
-      border-radius: 12px;
       margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
     }
 
-    .addon-section h2 {
+    .card h2 {
       color: #ff4444;
-      font-size: 1.8em;
+      margin-bottom: 10px;
     }
 
-    .addon-section p {
-      color: #ccc;
-      line-height: 1.6;
-      font-size: 1.1em;
-    }
-
-    .download-btn {
+    a.button {
       display: inline-block;
-      margin-top: 25px;
-      padding: 15px 35px;
-      font-size: 1.2em;
-      background: #b30000;
-      color: white;
-      border-radius: 10px;
+      padding: 12px 20px;
+      background: #ff3333;
+      color: #fff;
+      border-radius: 8px;
       text-decoration: none;
-      transition: all 0.3s ease;
+      font-weight: bold;
+      transition: 0.3s;
     }
 
-    .download-btn:hover {
-      background: #ff0000;
-      box-shadow: 0 0 15px #f00;
+    a.button:hover {
+      background: #cc0000;
+      box-shadow: 0 0 15px #ff0000;
     }
 
     footer {
-      margin-top: 60px;
-      padding: 20px;
+      text-align: center;
+      padding: 15px;
       font-size: 0.9em;
-      color: #666;
-    }
-
-    /* Animation */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      color: #aaa;
+      border-top: 1px solid #400;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <!-- Logo -->
+    <img src="/logo.png" alt="Horror Craft Logo" class="logo">
 
-  <header>
-    <!-- Logo Horror Craft -->
-    <img src="title.png" alt="Horror Craft Logo">
-    <p>Minecraft PE 1.21.100 • Dark Fantasy • Kinh dị sinh tồn</p>
-  </header>
+    <!-- Tiêu đề -->
+    <h1>Addon Horror Craft</h1>
+    <p class="subtitle">Minecraft PE 1.21.100 • Dark Fantasy • Kinh dị sinh tồn</p>
 
-  <section class="addon-section">
-    <!-- 🔥 ẢNH DEMO ADDON (bạn thay link ảnh thật ở đây) -->
-    <img src="https://i.imgur.com/QpZk123.png" alt="Horror Craft Demo">
+    <!-- Nội dung -->
+    <div class="card">
+      <h2>🌑 Giới thiệu</h2>
+      <p>
+        Một thế giới Minecraft bị bao phủ bởi bóng tối và máu đỏ.
+        Hãy chiến đấu với những sinh vật từ <b>The Fog</b>, <b>Dark Fantasy</b>
+        và những thực thể cổ xưa. Addon này bổ sung thêm vũ khí có kỹ năng,
+        animation chiến đấu và hiệu ứng đặc biệt, tạo nên trải nghiệm sinh tồn kinh dị cực căng thẳng.
+      </p>
+    </div>
 
-    <!-- 🔥 MÔ TẢ ADDON -->
-    <h2>Addon Horror Craft</h2>
-    <p>
-      Một thế giới Minecraft bị bao phủ bởi bóng tối và máu đỏ.  
-      Hãy chiến đấu với những sinh vật từ The Fog, Dark Fantasy và những thực thể cổ xưa.  
-      Addon này thêm vũ khí có kỹ năng, animation chiến đấu và hiệu ứng ánh sáng ma mị.
-    </p>
+    <div class="card">
+      <h2>⚔️ Tính năng nổi bật</h2>
+      <ul>
+        <li>Thêm quái vật kinh dị từ nhiều vũ trụ khác nhau.</li>
+        <li>Hệ thống vũ khí mới kèm kỹ năng đặc biệt.</li>
+        <li>Animation chiến đấu mượt và máu me chân thực.</li>
+        <li>Không gian tối tăm, hiệu ứng âm thanh rùng rợn.</li>
+      </ul>
+    </div>
 
-    <!-- 🔥 NÚT TẢI -->
-    <a class="download-btn" href="https://www.mediafire.com/file/ik8gf3yqo3iu3qt/Cartyoon+Cat.jar+[Horror]_1756587264060.mcaddon/file" target="_blank" rel="noopener noreferrer">
-      📥 TẢI NGAY
-    </a>
-  </section>
+    <div class="card" style="text-align:center;">
+      <h2>📥 Tải xuống</h2>
+      <a href="#" class="button">Download Addon</a>
+    </div>
+  </div>
 
   <footer>
-    © 2025 MCPEXNGHIA • Made with ❤️ and Horror
+    👾 Horror Craft Addon © 2025 - Survival Horror Experience
   </footer>
-
 </body>
 </html>
