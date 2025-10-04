@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>👾 Horror Craft Addon</title>
+
+  <!-- Font Google Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Open Graph để chia sẻ đẹp hơn -->
+  <meta property="og:title" content="👾 Horror Craft Addon">
+  <meta property="og:description" content="Minecraft PE 1.21.100 • Dark Fantasy • Kinh dị sinh tồn">
+  <meta property="og:image" content="title.png">
+  <meta property="og:type" content="website">
+
   <style>
     body {
       background-color: #0a0a0a;
@@ -19,11 +29,12 @@
       background: linear-gradient(180deg, #2b0000, #000);
     }
 
-    header h1 {
-      font-size: 2.8em;
-      color: #ff3333;
-      margin-bottom: 10px;
-      text-shadow: 0 0 10px #ff0000;
+    header img {
+      max-width: 400px;
+      width: 90%;
+      height: auto;
+      margin-bottom: 15px;
+      animation: fadeInDown 1.5s ease;
     }
 
     header p {
@@ -38,6 +49,7 @@
       border-radius: 12px;
       padding: 20px;
       box-shadow: 0 0 25px #400;
+      animation: fadeIn 1.5s ease-in-out;
     }
 
     .addon-section img {
@@ -80,18 +92,30 @@
       font-size: 0.9em;
       color: #666;
     }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>👾 Horror Craft Addon</h1>
+    <!-- Logo Horror Craft -->
+    <img src="title.png" alt="Horror Craft Logo">
     <p>Minecraft PE 1.21.100 • Dark Fantasy • Kinh dị sinh tồn</p>
   </header>
 
   <section class="addon-section">
-    <!-- 🔥 ẢNH CHÍNH CỦA ADDON -->
-    <img src="https://i.imgur.com/abc123.jpg" alt="Horror Craft">
+    <!-- 🔥 ẢNH DEMO ADDON (bạn thay link ảnh thật ở đây) -->
+    <img src="https://i.imgur.com/QpZk123.png" alt="Horror Craft Demo">
 
     <!-- 🔥 MÔ TẢ ADDON -->
     <h2>Addon Horror Craft</h2>
@@ -102,7 +126,7 @@
     </p>
 
     <!-- 🔥 NÚT TẢI -->
-    <a class="download-btn" href="https://www.mediafire.com/file/ik8gf3yqo3iu3qt/Cartyoon+Cat.jar+[Horror]_1756587264060.mcaddon/file" target="_blank">
+    <a class="download-btn" href="https://www.mediafire.com/file/ik8gf3yqo3iu3qt/Cartyoon+Cat.jar+[Horror]_1756587264060.mcaddon/file" target="_blank" rel="noopener noreferrer">
       📥 TẢI NGAY
     </a>
   </section>
