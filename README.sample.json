@@ -1,0 +1,4 @@
+{
+  "mode": "static",
+  "notes": "Nếu dùng GitHub Pages đặt index.html và addons.json ở root. Nếu dùng server, dùng addons.db.json và API /api/addons."
+}

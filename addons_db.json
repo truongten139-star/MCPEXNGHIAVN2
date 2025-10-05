@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Horror Craft",
+    "description": "Thế giới Minecraft tối tăm, ám ảnh với các sinh vật kinh dị",
+    "image": "https://i.ibb.co/M5Z72jCC/horror.jpg",
+    "download": "https://example.com/download/horror",
+    "featured": true,
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "name": "Tân Thế Zombie",
+    "description": "Sinh tồn giữa đại dịch zombie với vũ khí và căn cứ nâng cấp",
+    "image": "https://i.ibb.co/p6MRZ8b6/zombie.jpg",
+    "download": "https://example.com/download/zombie",
+    "featured": false,
+    "createdAt": "2025-01-02T00:00:00.000Z"
+  }
+]
