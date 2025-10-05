@@ -9,28 +9,37 @@
 <body>
   <div class="app">
     <header class="topbar">
-      <div class="brand">MCPEX NGHIA VN</div>
-      <div class="actions">
-        <input id="search" type="search" placeholder="Tìm addon, tag, mô tả..." aria-label="Tìm addon" />
-        <select id="tagFilter" aria-label="Lọc theo tag">
-          <option value="">Tất cả tag</option>
-        </select>
+      <div class="left">
+        <div class="brand">MCPEX NGHIA VN</div>
+        <div class="muted small">Addon Store</div>
+      </div>
+
+      <div class="controls">
+        <input id="search" type="search" placeholder="Tìm addon, mô tả, tag..." aria-label="Tìm addon" />
+        <select id="tagFilter" aria-label="Lọc theo tag"><option value="">Tất cả tag</option></select>
         <button id="clearFilters" title="Xóa bộ lọc">X</button>
+        <button id="reload" title="Tải lại dữ liệu">⟳</button>
+        <input id="adminKey" type="password" placeholder="Admin key" title="Nhập admin key" />
+        <button id="loginBtn" class="small">Login</button>
       </div>
     </header>
 
     <main class="container">
       <section class="hero">
         <h1>Addon Store</h1>
-        <p class="muted">Tải addons, maps, và gói resource cho server của bạn.</p>
+        <p class="muted">Tải addons, maps và resource packs cho server của bạn.</p>
       </section>
 
-      <section id="controls" class="controls">
-        <div class="stats"><span id="count">0</span> addon</div>
+      <section class="toolbar">
+        <div class="stats"><span id="count">0</span> addon • <span id="updatedAt">—</span></div>
         <div class="pager">
           <button id="prevPage" class="pagebtn" aria-label="Trang trước">&lt;</button>
           <span id="pageInfo">1 / 1</span>
           <button id="nextPage" class="pagebtn" aria-label="Trang sau">&gt;</button>
+        </div>
+        <div class="admin-actions hidden" id="adminActions">
+          <button id="addBtn" class="btn">Thêm addon</button>
+          <button id="exportBtn" class="btn alt">Xuất JSON</button>
         </div>
       </section>
 
@@ -46,10 +55,8 @@
           <div class="modal-info">
             <h2 id="modalTitle">Tiêu đề</h2>
             <p id="modalDesc">Mô tả</p>
-            <div class="modal-meta">
-              <span id="modalTags" class="tags"></span>
-              <span id="modalSize" class="small"></span>
-            </div>
+            <div id="modalTags" class="tags"></div>
+            <div class="meta-row"><span id="modalSize" class="small"></span><span id="modalUrl"></span></div>
             <div class="modal-actions">
               <a id="modalDownload" class="btn primary" target="_blank" rel="noreferrer">Tải về</a>
               <button id="modalCloseBtn" class="btn">Đóng</button>
@@ -59,8 +66,28 @@
       </div>
     </div>
 
+    <div id="formModal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-card">
+        <button id="closeForm" class="modal-close" aria-label="Đóng">✕</button>
+        <div class="modal-body form-body">
+          <h2 id="formTitle">Thêm addon</h2>
+          <label>Tiêu đề <input id="f_title" /></label>
+          <label>Mô tả <textarea id="f_description"></textarea></label>
+          <label>URL tải (ví dụ /addons/file.mcaddon) <input id="f_url" /></label>
+          <label>Ảnh (path) <input id="f_img" /></label>
+          <label>Kích thước <input id="f_size" /></label>
+          <label>Tags (phân tách bằng dấu phẩy) <input id="f_tags" /></label>
+          <div class="form-actions">
+            <button id="saveAddon" class="btn primary">Lưu</button>
+            <button id="cancelSave" class="btn alt">Hủy</button>
+            <button id="deleteAddon" class="btn danger hidden">Xóa</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer class="footer">
-      <small>MCPEX NGHIA VN • Built with ❤️</small>
+      <small>MCPEX NGHIA VN • Built with care</small>
     </footer>
   </div>
 
