@@ -65,4 +65,63 @@ body {overflow-x:hidden}
   .panel-grid{grid-template-columns:1fr}
   .layout{grid-template-columns:1fr}
   .thumb{height:120px}
+  /* --- MOBILE LAYOUT FIXES — Dán vào cuối style.css --- */
+
+/* Bảo đảm không có cuộn ngang */
+html, body { overflow-x: hidden; }
+
+/* Toàn bộ container không vượt quá viewport trên mobile */
+.site { max-width: 100%; padding-left: 12px; padding-right: 12px; margin: 12px auto; }
+
+/* Layout: mặc định cột dọc, chuyển sang 2 cột ở màn rộng đủ */
+.layout { display: grid; grid-template-columns: 1fr; gap: 14px; align-items:start; }
+@media (min-width: 900px) { .layout { grid-template-columns: 1fr 320px; } }
+@media (min-width: 1000px) { .site { max-width: 1180px; } }
+
+/* Cards: đảm bảo không tràn, ảnh co theo thẻ */
+.cards, .panel-grid { width: 100%; box-sizing: border-box; }
+.card { min-width: 0; } /* cho phép flex/grid thu nhỏ */
+.thumb, .panel-img { max-width: 100%; overflow: hidden; }
+.thumb img, .panel-img img { display:block; width:100%; height:auto; object-fit:cover; }
+
+/* Forms, inputs, textarea không tràn */
+input, textarea, select, button, .search input { max-width: 100%; width:100%; box-sizing: border-box; }
+
+/* Header controls gọn trên mobile */
+.site-header { gap:8px; flex-wrap:wrap; }
+.controls { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+
+/* Nav: ẩn hoặc gộp nếu nhỏ */
+.main-nav { gap:6px; flex-wrap:wrap; }
+
+/* Modal / Panel fix: dùng width theo viewport, tránh left/right tràn */
+.panel {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 94vw;
+  max-width: 980px;
+  box-sizing: border-box;
+  padding: 12px;
+}
+@media (max-width:720px){
+  .panel-img { height: 200px; }
+  .panel-grid { grid-template-columns: 1fr; gap:10px; }
+}
+
+/* Tránh chữ dài làm tràn */
+.card h3, .card p, .nav-link, .note {
+  word-break: break-word; white-space: normal; overflow-wrap: break-word;
+}
+
+/* Các nút và chip không tràn */
+.chip, .btn-primary, .btn-ghost { max-width: 100%; }
+
+/* Fix input tìm kiếm ngang gây tràn */
+.search { min-width: 0; }
+.search input { width: auto; min-width: 120px; max-width: 60vw; }
+
+/* Nếu vẫn có phần tử gây overflow, highlight nhanh để debug (bật khi cần) */
+/*
+* { outline: 0.5px solid rgba(255,0,0,0.05) !important; }
+*/
 }
