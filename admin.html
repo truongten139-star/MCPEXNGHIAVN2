@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>MCPEX NGHIA VN • Admin</title>
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">MCPEX NGHIA VN — Admin</div>
+  <div class="controls">
+    <input id="keyInput" type="password" placeholder="Admin key" />
+    <button id="loginBtn">Login</button>
+    <a href="/index.html">Store</a>
+  </div>
+</header>
+
+<main class="container admin">
+  <section class="admin-panel">
+    <div class="admin-controls hidden" id="adminControls">
+      <button id="btnNew">Thêm addon</button>
+      <input id="uploadFile" type="file" />
+      <button id="btnExport">Xuất JSON</button>
+    </div>
+
+    <div id="adminList" class="grid"></div>
+  </section>
+</main>
+
+<div id="formModal" class="modal hidden">
+  <div class="modal-card">
+    <button id="closeForm">✕</button>
+    <h2 id="formTitle">Thêm addon</h2>
+    <label>Tiêu đề<input id="f_title" /></label>
+    <label>Mô tả<textarea id="f_description"></textarea></label>
+    <label>URL tải<input id="f_url" /></label>
+    <label>Ảnh<input id="f_img" /></label>
+    <label>Kích thước<input id="f_size" /></label>
+    <label>Tags<input id="f_tags" /></label>
+    <div class="form-actions">
+      <button id="saveBtn">Lưu</button>
+      <button id="cancelBtn">Hủy</button>
+      <button id="deleteBtn" class="danger hidden">Xóa</button>
+    </div>
+  </div>
+</div>
+
+<script src="/admin.js" defer></script>
+</body>
+</html>
