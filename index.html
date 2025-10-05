@@ -3,127 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌍 mcpexnghia</title>
+  <title>MCPExNghia Addons</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      background: linear-gradient(to bottom, #0a0a0a, #1a0000);
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height:1.6;
-    }
-    .container { max-width: 900px; margin:auto; padding:20px; }
-    .logo { display:block; margin:20px auto; max-width:220px; filter: drop-shadow(0 0 10px #ff0000); }
-    h1 { text-align:center; color:#ff3333; font-size:2.2em; margin-bottom:10px; text-shadow:0 0 10px #900; }
-    .subtitle { text-align:center; font-size:1.1em; margin-bottom:25px; color:#ccc; }
-    #addons-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: rgba(20,20,20,0.9);
-      border:1px solid #400;
-      border-radius:12px;
+    body { 
+      font-family: Arial, sans-serif; 
+      background:#111; 
+      color:#eee; 
+      text-align:center; 
+      margin:0; 
       padding:20px;
-      margin-bottom:20px;
-      box-shadow:0 0 15px rgba(255,0,0,0.3);
-      transition:0.3s;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 0.6s forwards;
     }
-    .card:hover { box-shadow:0 0 25px rgba(255,0,0,0.6); }
-    .card h2 { color:#ff4444; margin-bottom:10px; text-align:center; }
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 12px;
-      border: 2px solid #600;
-      display:block;
+    h1 { color:#0f0; }
+    .card { 
+      background:#222; 
+      padding:10px; 
+      margin:10px; 
+      border-radius:8px; 
+      display:inline-block; 
+      width:200px; 
+      box-shadow:0 0 8px rgba(0,255,0,0.3);
     }
-    a.button {
-      display:inline-block;
-      padding:12px 20px;
-      background:#ff3333;
-      color:#fff;
-      border-radius:8px;
-      text-decoration:none;
-      font-weight:bold;
-      transition:0.3s;
-      margin:12px 0;
+    img { max-width:100%; border-radius:6px; }
+    input, button { 
+      margin:5px; 
+      padding:8px; 
+      border-radius:5px; 
+      border:none; 
+      width:80%; 
+      max-width:250px;
     }
-    a.button:hover { background:#cc0000; box-shadow:0 0 15px #ff0000; }
-    footer { text-align:center; padding:15px; font-size:0.9em; color:#aaa; border-top:1px solid #400; margin-top:30px; }
-    @keyframes fadeIn {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    ul { margin-left: 20px; margin-top: 8px; }
+    button { background:#0f0; color:#000; cursor:pointer; font-weight:bold; }
+    button:hover { background:#0c0; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="/horror_logo.png" alt="mcpexnghia Logo" class="logo">
-    <h1>mcpexnghia</h1>
-    <p class="subtitle">Minecraft PE 1.21.100 • Addons • Mods • Maps</p>
+  <h1>👾 MCPExNghia Addons</h1>
+  <div id="addons-container"></div>
 
-    <div id="addons-container"></div>
+  <!-- Nhập key -->
+  <div id="keyBox" style="margin-top:20px;">
+    <input type="password" id="adminKey" placeholder="🔑 Nhập key admin">
+    <button onclick="checkKey()">Xác nhận</button>
   </div>
 
-  <footer>
-    🌍 mcpexnghia © <span id="year"></span> - Minecraft PE Addons & Mods
-  </footer>
+  <!-- Admin Panel (ẩn) -->
+  <div id="adminPanel" style="display:none; margin-top:20px;">
+    <h2>Admin Panel</h2>
+    <input type="text" id="addonName" placeholder="Tên addon"><br>
+    <input type="text" id="addonDesc" placeholder="Mô tả"><br>
+    <input type="text" id="addonImg" placeholder="URL hình ảnh"><br>
+    <input type="text" id="addonLink" placeholder="Link download"><br>
+    <button onclick="addAddon()">➕ Thêm Addon</button>
+  </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+<script>
+  // 🔑 Key admin
+  const SECRET_KEY = "mcpexnghia2025"; 
 
-    const addons = [
-      {
-        name: "🌑 Horror Craft",
-        description: "Một thế giới Minecraft bị bao phủ bởi bóng tối và máu đỏ. Addon bổ sung quái vật, vũ khí, animation và hiệu ứng kinh dị.",
-        image: "/horror_logo.png",
-        download: "https://www.mediafire.com/file/ik8gf3yqo3iu3qt/Cartyoon+Cat.jar+[Horror]_1756587264060.mcaddon/file",
-        features: [
-          "Thêm quái vật từ nhiều vũ trụ.",
-          "Hệ thống vũ khí mới kèm kỹ năng.",
-          "Animation chiến đấu mượt và máu me chân thực."
-        ]
-      },
-      {
-        name: "🩸 Dark Survival",
-        description: "Addon tập trung vào sinh tồn trong môi trường tối tăm, bổ sung quái vật mới và vật phẩm sinh tồn.",
-        image: "/dark_survive.png",
-        download: "https://www.mediafire.com/file/example_dark_survival.mcaddon/file",
-        features: [
-          "Thêm boss và quái vật khủng.",
-          "Hệ thống craft mới.",
-          "Hiệu ứng âm thanh rùng rợn."
-        ]
-      }
-    ];
+  // Lấy addons từ localStorage hoặc mặc định 1 addon mẫu
+  let addons = JSON.parse(localStorage.getItem("addons")) || [
+    {
+      name: "Cartoon Cat",
+      description: "Mob kinh dị Cartoon Cat",
+      image: "https://i.ibb.co/example1.png",
+      download: "https://www.mediafire.com/file/example1.mcaddon"
+    }
+  ];
 
-    const container = document.getElementById('addons-container');
-
-    addons.forEach((addon, idx) => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.style.animationDelay = (idx * 0.15) + 's';
-
-      let featuresHTML = '';
-      if (addon.features && addon.features.length > 0) {
-        featuresHTML = '<ul>' + addon.features.map(f => `<li>${f}</li>`).join('') + '</ul>';
-      }
-
-      card.innerHTML = `
-        ${addon.image ? `<img src="${addon.image}" alt="${addon.name}">` : ''}
-        <h2>${addon.name}</h2>
-        <p>${addon.description}</p>
-        <a href="${addon.download}" class="button" target="_blank" rel="noopener noreferrer">Download Addon</a>
-        ${featuresHTML}
+  // Render addons ra web
+  function renderAddons() {
+    const container = document.getElementById("addons-container");
+    container.innerHTML = "";
+    addons.forEach(a => {
+      container.innerHTML += `
+        <div class="card">
+          <img src="${a.image}" alt="${a.name}">
+          <h3>${a.name}</h3>
+          <p>${a.description}</p>
+          <a href="${a.download}" target="_blank">
+            <button>⬇️ Tải về</button>
+          </a>
+        </div>
       `;
-
-      container.appendChild(card);
     });
-  </script>
+  }
+
+  // Check key admin
+  function checkKey() {
+    const key = document.getElementById("adminKey").value;
+    if (key === SECRET_KEY) {
+      alert("✅ Đăng nhập admin thành công!");
+      document.getElementById("adminPanel").style.display = "block";
+      document.getElementById("keyBox").style.display = "none";
+    } else {
+      alert("❌ Key sai!");
+    }
+  }
+
+  // Thêm addon mới
+  function addAddon() {
+    const addon = {
+      name: document.getElementById("addonName").value,
+      description: document.getElementById("addonDesc").value,
+      image: document.getElementById("addonImg").value,
+      download: document.getElementById("addonLink").value
+    };
+    addons.push(addon);
+    localStorage.setItem("addons", JSON.stringify(addons));
+    renderAddons();
+    alert("✅ Addon đã thêm!");
+  }
+
+  // Lần đầu load web thì render addons
+  renderAddons();
+</script>
 </body>
 </html>
