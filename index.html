@@ -8,7 +8,7 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       background: linear-gradient(to bottom, #0a0a0a, #1a0000);
-      color:#eee;
+      color: #eee;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height:1.6;
     }
@@ -16,6 +16,11 @@
     .logo { display:block; margin:20px auto; max-width:220px; filter: drop-shadow(0 0 10px #ff0000); }
     h1 { text-align:center; color:#ff3333; font-size:2.2em; margin-bottom:10px; text-shadow:0 0 10px #900; }
     .subtitle { text-align:center; font-size:1.1em; margin-bottom:25px; color:#ccc; }
+    #addons-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
     .card {
       background: rgba(20,20,20,0.9);
       border:1px solid #400;
@@ -24,9 +29,18 @@
       margin-bottom:20px;
       box-shadow:0 0 15px rgba(255,0,0,0.3);
       transition:0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.6s forwards;
     }
     .card:hover { box-shadow:0 0 25px rgba(255,0,0,0.6); }
     .card h2 { color:#ff4444; margin-bottom:10px; }
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      border: 2px solid #600;
+    }
     a.button {
       display:inline-block;
       padding:12px 20px;
@@ -40,67 +54,71 @@
     }
     a.button:hover { background:#cc0000; box-shadow:0 0 15px #ff0000; }
     footer { text-align:center; padding:15px; font-size:0.9em; color:#aaa; border-top:1px solid #400; margin-top:30px; }
-    ul { margin-left: 20px; margin-top: 5px; }
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    ul { margin-left: 20px; margin-top: 8px; }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="/logo.png" alt="Horror Craft Logo" class="logo">
+    <img src="/images/horror_logo.png" alt="Horror Craft Logo" class="logo">
     <h1>Horror Craft Addons</h1>
     <p class="subtitle">Minecraft PE 1.21.100 • Dark Fantasy • Kinh dị sinh tồn</p>
 
-    <!-- Nơi render các addon -->
     <div id="addons-container"></div>
-
   </div>
 
   <footer>
-    👾 Horror Craft Addons © 2025 - Survival Horror Experience
+    👾 Horror Craft Addons © <span id="year"></span> - Survival Horror Experience
   </footer>
 
   <script>
-    // Danh sách addon
+    document.getElementById("year").textContent = new Date().getFullYear();
+
     const addons = [
       {
         name: "🌑 Horror Craft",
         description: "Một thế giới Minecraft bị bao phủ bởi bóng tối và máu đỏ. Addon bổ sung quái vật, vũ khí, animation và hiệu ứng kinh dị.",
+        image: "/images/horror_logo.png",  // dùng ảnh logo giống chung hoặc riêng
+        download: "https://www.mediafire.com/file/ik8gf3yqo3iu3qt/Cartyoon+Cat.jar+[Horror]_1756587264060.mcaddon/file",
         features: [
           "Thêm quái vật từ nhiều vũ trụ.",
           "Hệ thống vũ khí mới kèm kỹ năng.",
           "Animation chiến đấu mượt và máu me chân thực."
-        ],
-        download: "https://www.mediafire.com/file/ik8gf3yqo3iu3qt/Cartyoon+Cat.jar+[Horror]_1756587264060.mcaddon/file"
+        ]
       },
       {
         name: "🩸 Dark Survival",
         description: "Addon tập trung vào sinh tồn trong môi trường tối tăm, bổ sung quái vật mới và vật phẩm sinh tồn.",
+        image: "/images/dark_survival_logo.png",
+        download: "https://www.mediafire.com/file/example_dark_survival.mcaddon/file",
         features: [
           "Thêm boss và quái vật khủng.",
           "Hệ thống craft mới.",
           "Hiệu ứng âm thanh rùng rợn."
-        ],
-        download: "https://www.mediafire.com/file/example_dark_survival.mcaddon/file"
+        ]
       }
-      // Bạn có thể thêm addon mới vào đây
     ];
 
     const container = document.getElementById('addons-container');
 
-    // Render mỗi addon
-    addons.forEach(addon => {
+    addons.forEach((addon, idx) => {
       const card = document.createElement('div');
       card.className = 'card';
+      card.style.animationDelay = (idx * 0.15) + 's'; // cho hiệu ứng xuất hiện nối tiếp
 
       let featuresHTML = '';
-      if(addon.features && addon.features.length > 0){
+      if (addon.features && addon.features.length > 0) {
         featuresHTML = '<ul>' + addon.features.map(f => `<li>${f}</li>`).join('') + '</ul>';
       }
 
       card.innerHTML = `
+        ${addon.image ? `<img src="${addon.image}" alt="${addon.name}">` : ''}
         <h2>${addon.name}</h2>
         <p>${addon.description}</p>
-        ${featuresHTML}
         <a href="${addon.download}" class="button" target="_blank" rel="noopener noreferrer">Download Addon</a>
+        ${featuresHTML}
       `;
 
       container.appendChild(card);
