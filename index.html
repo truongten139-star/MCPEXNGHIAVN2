@@ -3,45 +3,66 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MCPEX NGHIA VN</title>
+  <title>MCPEX NGHIA VN • Store</title>
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">MCPEX NGHIA VN</div>
-    <div class="controls">
-      <input id="search" type="search" placeholder="Tìm addon, mô tả..." />
-      <button id="refresh" title="Tải lại">⟳</button>
-    </div>
-  </header>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">MCPEX NGHIA VN</div>
+      <div class="actions">
+        <input id="search" type="search" placeholder="Tìm addon, tag, mô tả..." aria-label="Tìm addon" />
+        <select id="tagFilter" aria-label="Lọc theo tag">
+          <option value="">Tất cả tag</option>
+        </select>
+        <button id="clearFilters" title="Xóa bộ lọc">X</button>
+      </div>
+    </header>
 
-  <main class="main">
-    <section class="intro">
-      <h1>Addon store</h1>
-      <p class="muted">Danh sách addon máy chủ và maps. Nhấn vào thẻ để xem chi tiết hoặc tải về.</p>
-    </section>
+    <main class="container">
+      <section class="hero">
+        <h1>Addon Store</h1>
+        <p class="muted">Tải addons, maps, và gói resource cho server của bạn.</p>
+      </section>
 
-    <section id="grid" class="grid" aria-live="polite"></section>
+      <section id="controls" class="controls">
+        <div class="stats"><span id="count">0</span> addon</div>
+        <div class="pager">
+          <button id="prevPage" class="pagebtn" aria-label="Trang trước">&lt;</button>
+          <span id="pageInfo">1 / 1</span>
+          <button id="nextPage" class="pagebtn" aria-label="Trang sau">&gt;</button>
+        </div>
+      </section>
 
-    <div id="empty" class="empty hidden">Không tìm thấy addon nào.</div>
-  </main>
+      <section id="grid" class="grid" aria-live="polite"></section>
+      <div id="empty" class="empty hidden">Không tìm thấy addon nào.</div>
+    </main>
 
-  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
-    <div class="modal-card">
-      <button id="closeModal" class="modal-close">✕</button>
-      <img id="modalImg" src="/assets/fallback.png" alt="" />
-      <h2 id="modalTitle">Tiêu đề</h2>
-      <p id="modalDesc">Mô tả</p>
-      <div class="modal-actions">
-        <a id="modalDownload" class="btn" target="_blank" rel="noreferrer">Tải về</a>
-        <button id="modalCloseBtn" class="btn alt">Đóng</button>
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-card">
+        <button id="closeModal" class="modal-close" aria-label="Đóng">✕</button>
+        <div class="modal-body">
+          <img id="modalImg" src="/assets/fallback.png" alt="" />
+          <div class="modal-info">
+            <h2 id="modalTitle">Tiêu đề</h2>
+            <p id="modalDesc">Mô tả</p>
+            <div class="modal-meta">
+              <span id="modalTags" class="tags"></span>
+              <span id="modalSize" class="small"></span>
+            </div>
+            <div class="modal-actions">
+              <a id="modalDownload" class="btn primary" target="_blank" rel="noreferrer">Tải về</a>
+              <button id="modalCloseBtn" class="btn">Đóng</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <footer class="footer">
-    <small>MCPEX NGHIA VN • Demo UI</small>
-  </footer>
+    <footer class="footer">
+      <small>MCPEX NGHIA VN • Built with ❤️</small>
+    </footer>
+  </div>
 
   <script src="/script.js" defer></script>
 </body>
