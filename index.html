@@ -34,12 +34,13 @@
       animation: fadeIn 0.6s forwards;
     }
     .card:hover { box-shadow:0 0 25px rgba(255,0,0,0.6); }
-    .card h2 { color:#ff4444; margin-bottom:10px; }
+    .card h2 { color:#ff4444; margin-bottom:10px; text-align:center; }
     .card img {
       width: 100%;
       border-radius: 10px;
       margin-bottom: 12px;
       border: 2px solid #600;
+      display:block;
     }
     a.button {
       display:inline-block;
@@ -50,7 +51,7 @@
       text-decoration:none;
       font-weight:bold;
       transition:0.3s;
-      margin-top:8px;
+      margin:12px 0;
     }
     a.button:hover { background:#cc0000; box-shadow:0 0 15px #ff0000; }
     footer { text-align:center; padding:15px; font-size:0.9em; color:#aaa; border-top:1px solid #400; margin-top:30px; }
@@ -62,7 +63,7 @@
 </head>
 <body>
   <div class="container">
-    <img src="/images/horror_logo.png" alt="Horror Craft Logo" class="logo">
+    <img src="https://i.imgur.com/4zK9c1G.png" alt="Horror Craft Logo" class="logo">
     <h1>Horror Craft Addons</h1>
     <p class="subtitle">Minecraft PE 1.21.100 • Dark Fantasy • Kinh dị sinh tồn</p>
 
@@ -80,7 +81,7 @@
       {
         name: "🌑 Horror Craft",
         description: "Một thế giới Minecraft bị bao phủ bởi bóng tối và máu đỏ. Addon bổ sung quái vật, vũ khí, animation và hiệu ứng kinh dị.",
-        image: "/images/horror_logo.png",  // dùng ảnh logo giống chung hoặc riêng
+        image: "https://i.imgur.com/1XcF2to.png", // ảnh logo Horror Craft
         download: "https://www.mediafire.com/file/ik8gf3yqo3iu3qt/Cartyoon+Cat.jar+[Horror]_1756587264060.mcaddon/file",
         features: [
           "Thêm quái vật từ nhiều vũ trụ.",
@@ -91,7 +92,7 @@
       {
         name: "🩸 Dark Survival",
         description: "Addon tập trung vào sinh tồn trong môi trường tối tăm, bổ sung quái vật mới và vật phẩm sinh tồn.",
-        image: "/images/dark_survival_logo.png",
+        image: "https://i.imgur.com/rZxUO7p.png", // ảnh logo Dark Survival
         download: "https://www.mediafire.com/file/example_dark_survival.mcaddon/file",
         features: [
           "Thêm boss và quái vật khủng.",
@@ -106,7 +107,7 @@
     addons.forEach((addon, idx) => {
       const card = document.createElement('div');
       card.className = 'card';
-      card.style.animationDelay = (idx * 0.15) + 's'; // cho hiệu ứng xuất hiện nối tiếp
+      card.style.animationDelay = (idx * 0.15) + 's';
 
       let featuresHTML = '';
       if (addon.features && addon.features.length > 0) {
