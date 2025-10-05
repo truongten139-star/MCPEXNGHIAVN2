@@ -1,16 +1,20 @@
 [
   {
+    "id": "horrorcraft",
     "name": "Horror Craft",
-    "description": "Thế giới Minecraft tối tăm, ám ảnh với các sinh vật kinh dị",
-    "image": "https://i.ibb.co/M5Z72jCC/horror.jpg",
-    "download": "https://example.com/download/horror",
-    "featured": true
+    "description": "Addon về sinh tồn, dành cho các bạn thích sự kinh dị.",
+    "image": "https://picsum.photos/seed/horror/800/450",
+    "download": "https://example.com/horror.zip",
+    "featured": true,
+    "createdAt": "2025-10-05T20:00:00Z"
   },
   {
-    "name": "Tân Thế Zombie",
-    "description": "Sinh tồn giữa đại dịch zombie với vũ khí và căn cứ nâng cấp",
-    "image": "https://i.ibb.co/p6MRZ8b6/zombie.jpg",
-    "download": "https://example.com/download/zombie",
-    "featured": false
+    "id": "tanthezombie",
+    "name": "Tận Thế Zombie",
+    "description": "Addon về sinh tồn, nơi bạn phải chống lại zombie trong một thế giới tận thế.",
+    "image": "https://picsum.photos/seed/zombie/800/450",
+    "download": "https://example.com/zombie.zip",
+    "featured": true,
+    "createdAt": "2025-09-30T10:00:00Z"
   }
-]
+] 
