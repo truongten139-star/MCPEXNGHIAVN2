@@ -1,16 +1,18 @@
 [
   {
-    "id": 1696550400000,
     "title": "Tận Thế Zombie",
     "description": "Chống lại zombie trong thế giới sinh tồn",
     "url": "/addons/zombie.mcaddon",
-    "img": "/assets/zombie.jpg"
+    "img": "/assets/fallback.png",
+    "size": "4 MB",
+    "tags": ["zombie","survival"]
   },
   {
-    "id": 1696550700000,
-    "title": "Horror Craft",
-    "description": "Addon kinh dị, âm thanh rùng rợn, bóng tối bao trùm",
-    "url": "/addons/horror-craft.mcaddon",
-    "img": "/assets/horror-craft.jpg"
+    "title": "Map Thành Phố",
+    "description": "Map thành phố hiện đại, thích hợp cho roleplay",
+    "url": "/addons/city.zip",
+    "img": "/assets/fallback.png",
+    "size": "12 MB",
+    "tags": ["map","city"]
   }
 ]
