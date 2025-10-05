@@ -1,14 +1,12 @@
 [
   {
-    "title": "Dark Fantasy Addon",
-    "description": "Addon thêm mob và animation cực đẹp.",
-    "download": "https://www.mediafire.com/file/xxxx/DarkFantasy.mcaddon/file",
-    "image": "https://i.imgur.com/xxxxx.jpg"
+    "id": "m1",
+    "name": "Better Tools",
+    "version": "1.0.0"
   },
   {
-    "title": "From The Fog",
-    "description": "Addon Herobrine đáng sợ nhất Minecraft.",
-    "download": "https://www.mediafire.com/file/yyyy/FromTheFog.mcaddon/file",
-    "image": "https://i.imgur.com/yyyyy.jpg"
+    "id": "m2",
+    "name": "Realistic Weather",
+    "version": "2.3.1"
   }
 ]
