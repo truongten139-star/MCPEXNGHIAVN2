@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCPExNghia Addons</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top, #0a0a0a 0%, #000 100%);
+      color: #e0ffe0;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      background: rgba(0, 20, 0, 0.9);
+      box-shadow: 0 0 15px #00ff88;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #00ff88;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 10px #00ff88; }
+      to { box-shadow: 0 0 25px #00ffcc; }
+    }
+
+    h1 {
+      color: #00ff88;
+      margin: 0;
+      font-size: 1.5em;
+      text-shadow: 0 0 10px #00ff88;
+    }
+
+    .keybox {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .keybox input {
+      padding: 8px 10px;
+      border-radius: 5px;
+      border: none;
+      background: #111;
+      color: #0f0;
+      outline: none;
+      box-shadow: 0 0 5px #00ff88;
+    }
+
+    .keybox button {
+      background: linear-gradient(90deg, #00ff88, #00ffaa);
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .keybox button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #00ff88;
+    }
+
+    #addons-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 30px 15px;
+    }
+
+    .card {
+      background: rgba(0, 30, 0, 0.85);
+      border: 1px solid #00ff88;
+      border-radius: 12px;
+      width: 230px;
+      text-align: center;
+      padding: 15px;
+      box-shadow: 0 0 10px #00ff88;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 0 25px #00ffaa;
+    }
+
+    .card img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      color: #00ffaa;
+      margin-bottom: 8px;
+      text-shadow: 0 0 5px #00ffaa;
+    }
+
+    .card p {
+      font-size: 0.9em;
+      color: #ccffcc;
+      height: 40px;
+      overflow: hidden;
+    }
+
+    .card button {
+      background: linear-gradient(90deg, #00ff88, #00ffaa);
+      border: none;
+      border-radius: 5px;
+      padding: 8px 10px;
+      color: #000;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .card button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #00ffaa;
+    }
+
+    #adminPanel {
+      display: none;
+      background: rgba(0, 40, 0, 0.9);
+      margin: 20px auto;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 20px #00ff88;
+      text-align: center;
+    }
+
+    #adminPanel input {
+      width: 90%;
+      max-width: 400px;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 5px;
+      background: #111;
+      color: #0f0;
+      box-shadow: 0 0 5px #00ff88;
+    }
+
+    #adminPanel button {
+      background: linear-gradient(90deg, #00ff88, #00ffaa);
+      border: none;
+      border-radius: 6px;
+      padding: 10px 15px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #adminPanel button:hover {
+      box-shadow: 0 0 10px #00ffaa;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      color: #0f0;
+      font-size: 0.9em;
+      border-top: 1px solid #00ff88;
+      background: #000;
+      box-shadow: 0 -2px 10px #00ff88;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>⚡ MCPExNghia Addons</h1>
+    <div class="keybox" id="keyBox">
+      <input type="password" id="adminKey" placeholder="🔑 Nhập key admin">
+      <button onclick="checkKey()">Xác nhận</button>
+    </div>
+  </header>
+
+  <div id="addons-container"></div>
+
+  <div id="adminPanel">
+    <h2>🔧 Admin Panel</h2>
+    <input type="text" id="addonName" placeholder="Tên addon"><br>
+    <input type="text" id="addonDesc" placeholder="Mô tả"><br>
+    <input type="text" id="addonImg" placeholder="URL hình ảnh"><br>
+    <input type="text" id="addonLink" placeholder="Link download"><br>
+    <button onclick="addAddon()">➕ Thêm Addon</button>
+  </div>
+
+  <footer>
+    © 2025 MCPExNghia | Designed with 💚 Neon Style
+  </footer>
+
+  <script>
+    const SECRET_KEY = "mcpexnghia2025";
+    let addons = [];
+
+    async function loadAddons() {
+      const res = await fetch("addons.json");
+      addons = await res.json();
+      renderAddons();
+    }
+
+    function renderAddons() {
+      const container = document.getElementById("addons-container");
+      container.innerHTML = "";
+      addons.forEach(a => {
+        container.innerHTML += `
+          <div class="card">
+            <img src="${a.image}" alt="${a.name}">
+            <h3>${a.name}</h3>
+            <p>${a.description}</p>
+            <a href="${a.download}" target="_blank">
+              <button>⬇️ Tải về</button>
+            </a>
+          </div>
+        `;
+      });
+    }
+
+    function checkKey() {
+      const key = document.getElementById("adminKey").value;
+      if (key === SECRET_KEY) {
+        alert("✅ Đăng nhập admin thành công!");
+        document.getElementById("adminPanel").style.display = "block";
+        document.getElementById("keyBox").style.display = "none";
+      } else {
+        alert("❌ Key sai!");
+      }
+    }
+
+    function addAddon() {
+      const addon = {
+        name: document.getElementById("addonName").value,
+        description: document.getElementById("addonDesc").value,
+        image: document.getElementById("addonImg").value,
+        download: document.getElementById("addonLink").value
+      };
+      addons.push(addon);
+      renderAddons();
+      alert("✅ Addon đã thêm (chỉ hiển thị tạm, muốn lưu thì cập nhật addons.json)!");
+    }
+
+    loadAddons();
+  </script>
+</body>
+</html>
