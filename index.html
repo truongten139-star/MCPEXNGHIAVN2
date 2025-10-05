@@ -1,114 +1,15 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MCPExNghia · Addons</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <title>MCPEX NGHIA VN</title>
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <div class="site">
-    <header class="site-header">
-      <div class="brand">
-        <div class="logo">MC</div>
-        <div>
-          <h1>MCPExNghia</h1>
-          <div class="subtitle">Addons · Mods · Themes</div>
-        </div>
-      </div>
-
-      <nav class="main-nav" aria-label="Chính">
-        <a class="nav-link" href="#">Trang chủ</a>
-        <a class="nav-link" href="#addons">Addons</a>
-        <a class="nav-link" href="#about">Giới thiệu</a>
-        <a class="nav-link" href="#contact">Liên hệ</a>
-      </nav>
-
-      <div class="controls">
-        <div class="search" role="search" aria-label="Tìm addon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="rgba(255,255,255,0.7)" stroke-width="1.6" stroke-linecap="round"/></svg>
-          <input id="q" type="search" placeholder="Tìm addon, ví dụ: horror, zombie">
-        </div>
-        <div class="chip">Tổng: <span id="count">0</span></div>
-        <button id="btnNew" class="btn-primary" title="Thêm addon">Thêm Addon</button>
-      </div>
-    </header>
-
-    <main class="layout" id="addons">
-      <section>
-        <div class="toolbar">
-          <h2>Addons</h2>
-          <div class="sort">
-            <label for="sort">Sắp xếp</label>
-            <select id="sort">
-              <option value="featured">Nổi bật trước</option>
-              <option value="new">Mới nhất</option>
-              <option value="name">Tên A→Z</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="cards" id="grid" aria-live="polite"></div>
-        <div class="spacer"></div>
-        <!-- Footer cũ đã bị xóa -->
-      </section>
-
-      <aside class="side" aria-labelledby="sideTitle">
-        <h4 id="sideTitle">Bộ lọc & Quản lý</h4>
-
-        <div class="filters">
-          <div class="filter-buttons">
-            <button class="toggle btn-ghost active" data-filter="all">Tất cả</button>
-            <button class="toggle btn-ghost" data-filter="featured">Nổi bật</button>
-            <button class="toggle btn-ghost" data-filter="recent">Mới nhất</button>
-          </div>
-
-          <label class="label">Từ khóa</label>
-          <input id="filterInput" placeholder="Tìm nhanh">
-
-          <div class="admin-block">
-            <div class="small">Admin (cục bộ)</div>
-            <div class="admin-mini">
-              <input id="adminKey" type="password" placeholder="Nhập admin key">
-              <button id="btnAdminLogin" class="btn-ghost">Đăng nhập</button>
-            </div>
-            <div class="note">Key được lưu cục bộ trong trình duyệt; để bảo mật thực sự cần xác thực server-side.</div>
-          </div>
-        </div>
-
-        <div class="admin-panel" id="adminPanel" style="display:none">
-          <h4>Thêm nhanh</h4>
-          <input id="aName" placeholder="Tên addon">
-          <input id="aImage" placeholder="Link ảnh (url)">
-          <input id="aDownload" placeholder="Link tải (url)">
-          <textarea id="aDesc" placeholder="Mô tả" rows="3"></textarea>
-          <div class="admin-actions">
-            <label><input id="aFeatured" type="checkbox"> Nổi bật</label>
-            <button id="btnAdd" class="btn-primary">Lưu</button>
-          </div>
-          <div class="note">Lưu trên trang hiện tại. Để lưu vĩnh viễn, cần API server hoặc commit lên GitHub.</div>
-        </div>
-      </aside>
-    </main>
-
-    <div id="panel" class="panel" role="dialog" aria-modal="true" aria-labelledby="pTitle" hidden>
-      <button id="panelClose" class="close" aria-label="Đóng">✕</button>
-      <div class="panel-grid">
-        <div class="panel-img" id="panelImgWrap"><img id="panelImg" src="" alt=""></div>
-        <div>
-          <h2 id="pTitle" class="p-title">Tên addon</h2>
-          <p id="pDesc" class="p-desc">Mô tả</p>
-          <div class="p-actions">
-            <a id="pDownload" class="btn-primary" href="#" target="_blank" rel="noopener">Tải xuống</a>
-            <button id="pCopy" class="btn-ghost">Sao chép link</button>
-            <span id="pBadge" class="badge">Nổi bật</span>
-          </div>
-          <div id="pMeta" class="meta"></div>
-        </div>
-      </div>
-    </div>
+  <div class="container">
+    <h1>Test MCPEX NGHIA VN</h1>
+    <div id="list" class="grid"></div>
   </div>
-
-  <script src="script.js"></script>
+  <script src="/script.js"></script>
 </body>
 </html>
