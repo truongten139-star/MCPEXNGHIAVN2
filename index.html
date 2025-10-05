@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCPExNghia Addons</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top, #0a0018 0%, #000 100%);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Intro */
+    #intro {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #3b0066, #000);
+      z-index: 9999;
+      animation: fadeOut 2s ease 2s forwards;
+    }
+    #intro h1 {
+      color: #b366ff;
+      text-shadow: 0 0 10px #b366ff, 0 0 30px #c999ff;
+      font-size: 2.3em;
+      margin: 0;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    #intro p {
+      margin-top: 10px;
+      color: #ddaaff;
+      letter-spacing: 2px;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #b366ff; }
+      to { text-shadow: 0 0 30px #c999ff; }
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(20, 0, 40, 0.9);
+      border-bottom: 2px solid #b366ff;
+      box-shadow: 0 0 20px #c999ff;
+      padding: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header h1 {
+      color: #dcb0ff;
+      text-shadow: 0 0 15px #c999ff;
+      margin: 0;
+      font-size: 1.5em;
+    }
+    .menu-icon {
+      position: absolute;
+      left: 15px;
+      font-size: 1.8em;
+      color: #c999ff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .menu-icon:hover { transform: scale(1.2); }
+
+    /* Sidebar */
+    #sidebar {
+      position: fixed;
+      top: 0; left: -260px;
+      width: 250px;
+      height: 100%;
+      background: rgba(50, 0, 80, 0.95);
+      box-shadow: 0 0 30px #c999ff;
+      border-right: 1px solid #b366ff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 60px;
+      transition: left 0.4s ease;
+      z-index: 1000;
+    }
+    #sidebar.active { left: 0; }
+    #sidebar a {
+      color: #e5ccff;
+      text-decoration: none;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.3s;
+    }
+    #sidebar a:hover {
+      background: rgba(180, 100, 255, 0.2);
+      color: #fff;
+    }
+    #admin-section {
+      border-top: 1px solid #b366ff;
+      margin-top: 10px;
+      display: none;
+    }
+    #sidebar a span {
+      font-size: 1.2em;
+    }
+
+    /* Addons */
+    #addons-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 40px 15px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(40,0,60,0.9), rgba(10,0,20,0.8));
+      border: 1px solid #b366ff;
+      border-radius: 15px;
+      width: 270px;
+      text-align: center;
+      padding: 18px;
+      box-shadow: 0 0 20px #b366ff40;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 0 25px #c999ff;
+    }
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 0 10px #c999ff80;
+    }
+    .card h3 { color: #dcb0ff; margin: 8px 0; }
+    .card p { font-size: 0.9em; color: #e6ccff; }
+    .card button {
+      background: linear-gradient(90deg, #b366ff, #c999ff);
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+    .card button:hover { box-shadow: 0 0 10px #c999ff; }
+
+    /* Popup */
+    #popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    #popup .content {
+      background: #180030;
+      border: 2px solid #b366ff;
+      box-shadow: 0 0 20px #c999ff;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      animation: fadeIn 0.4s;
+    }
+    #popup img { width: 100%; border-radius: 10px; margin-bottom: 10px; }
+    #popup button {
+      background: linear-gradient(90deg, #b366ff, #c999ff);
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #popup button:hover { box-shadow: 0 0 10px #c999ff; }
+    @keyframes fadeIn { from {opacity:0; transform:scale(0.9);} to {opacity:1; transform:scale(1);} }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #dcb0ff;
+      font-size: 0.9em;
+      border-top: 1px solid #b366ff;
+      background: #000;
+      box-shadow: 0 -2px 20px #b366ff60;
+    }
+  </style>
+</head>
+<body>
+  <div id="intro">
+    <h1>⚡ MCPExNghia Addons</h1>
+    <p>Neon Deluxe UI</p>
+  </div>
+
+  <header>
+    <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+    <h1>⚡ MCPExNghia Addons</h1>
+  </header>
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <a href="#"><span>🏠</span> Trang chủ</a>
+    <a href="#addons-container"><span>🧩</span> Addons</a>
+    <a href="#"><span>📞</span> Liên hệ</a>
+    <a href="#"><span>💡</span> Giới thiệu</a>
+    <div id="admin-section">
+      <a href="#"><span>⚙️</span> Admin Tools</a>
+      <a href="#"><span>➕</span> Thêm Addon</a>
+      <a href="#"><span>🎨</span> Đổi Theme</a>
+      <a href="#" onclick="logoutAdmin()"><span>🚪</span> Đăng xuất</a>
+    </div>
+  </div>
+
+  <!-- Addons -->
+  <div id="addons-container"></div>
+
+  <!-- Popup -->
+  <div id="popup">
+    <div class="content">
+      <img id="popupImg" src="">
+      <h2 id="popupName"></h2>
+      <p id="popupDesc"></p>
+      <a id="popupLink" href="#" target="_blank">
+        <button>⬇️ Tải về</button>
+      </a>
+      <br><br>
+      <button onclick="closePopup()">Đóng</button>
+    </div>
+  </div>
+
+  <footer>© 2025 MCPExNghia | Neon Deluxe UI 💜</footer>
+
+  <script>
+    const SECRET_KEY = "mcpexnghia2025";
+    let addons = [];
+    let isAdmin = false;
+
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    async function loadAddons() {
+      const res = await fetch("addons.json");
+      addons = await res.json();
+      renderAddons();
+    }
+
+    function renderAddons() {
+      const container = document.getElementById("addons-container");
+      container.innerHTML = "";
+      addons.forEach((a, i) => {
+        container.innerHTML += `
+          <div class="card" onclick="showPopup(${i})">
+            <img src="${a.image}" alt="${a.name}">
+            <h3>${a.name}</h3>
+            <p>${a.description}</p>
+            <button>Chi tiết</button>
+          </div>`;
+      });
+    }
+
+    function showPopup(index) {
+      const a = addons[index];
+      document.getElementById("popupImg").src = a.image;
+      document.getElementById("popupName").innerText = a.name;
+      document.getElementById("popupDesc").innerText = a.description;
+      document.getElementById("popupLink").href = a.download;
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() { document.getElementById("popup").style.display = "none"; }
+
+    function logoutAdmin() {
+      isAdmin = false;
+      document.getElementById("admin-section").style.display = "none";
+      alert("🚪 Đã đăng xuất admin!");
+    }
+
+    // Kiểm tra key admin
+    window.onload = function() {
+      setTimeout(() => {
+        let key = prompt("🔑 Nhập key admin (bỏ qua nếu bạn là khách):");
+        if (key === SECRET_KEY) {
+          isAdmin = true;
+          document.getElementById("admin-section").style.display = "block";
+          alert("✅ Đăng nhập admin thành công!");
+        }
+        loadAddons();
+      }, 2000);
+    };
+  </script>
+</body>
+</html>
