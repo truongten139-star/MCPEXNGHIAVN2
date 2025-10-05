@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCPExNghia Addons</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top, #020202 0%, #000 100%);
+      color: #c8ffc8;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* ===== Intro neon ===== */
+    #intro {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at center, #003300, #000);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: introFade 3s forwards;
+    }
+
+    #intro h1 {
+      color: #00ffaa;
+      font-size: 2.2em;
+      text-shadow: 0 0 10px #00ffaa, 0 0 30px #00ffcc;
+      margin: 0;
+      animation: glowText 2s ease-in-out infinite alternate;
+    }
+
+    #intro p {
+      color: #aaffdd;
+      margin-top: 10px;
+      font-size: 1em;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #00ffaa;
+      opacity: 0.8;
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 5px #00ffaa, 0 0 10px #00ffcc; }
+      to { text-shadow: 0 0 20px #00ffaa, 0 0 40px #00ffcc; }
+    }
+
+    @keyframes introFade {
+      0% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+
+    /* ===== Header ===== */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      padding: 20px 10px;
+      background: rgba(0, 30, 0, 0.9);
+      border-bottom: 2px solid #00ff88;
+      box-shadow: 0 0 20px #00ffaa;
+      animation: neonPulse 3s infinite alternate;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    @keyframes neonPulse {
+      from { box-shadow: 0 0 15px #00ffaa, 0 0 25px #00ff88; }
+      to { box-shadow: 0 0 30px #00ffaa, 0 0 50px #00ffcc; }
+    }
+
+    h1 {
+      color: #00ffaa;
+      text-shadow: 0 0 10px #00ffaa, 0 0 20px #00ffcc;
+      margin: 0;
+      font-size: 1.8em;
+    }
+
+    .keybox {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .keybox input {
+      padding: 8px 10px;
+      border-radius: 5px;
+      border: none;
+      background: #111;
+      color: #0f0;
+      outline: none;
+      box-shadow: 0 0 5px #00ff88;
+      text-align: center;
+    }
+
+    .keybox button {
+      background: linear-gradient(90deg, #00ff88, #00ffaa);
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .keybox button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #00ffaa;
+    }
+
+    /* ===== Cards ===== */
+    #addons-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px 15px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(0, 40, 0, 0.95), rgba(0, 0, 0, 0.8));
+      border: 1px solid #00ff88;
+      border-radius: 15px;
+      width: 280px;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 0 20px #00ffaa50;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 0 30px #00ffcc;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 0 10px #00ffaa80;
+    }
+
+    .card h3 {
+      color: #00ffaa;
+      text-shadow: 0 0 10px #00ffcc;
+      margin: 10px 0 5px;
+    }
+
+    .card p {
+      font-size: 0.9em;
+      color: #baffba;
+      min-height: 45px;
+    }
+
+    .card button {
+      margin-top: 10px;
+      background: linear-gradient(90deg, #00ffaa, #00ffcc);
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: #000;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .card button:hover {
+      box-shadow: 0 0 15px #00ffaa;
+      transform: scale(1.1);
+    }
+
+    /* ===== Popup ===== */
+    #popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    #popup .content {
+      background: #021;
+      border: 2px solid #00ffaa;
+      box-shadow: 0 0 20px #00ffcc;
+      padding: 20px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      color: #c8ffc8;
+      animation: fadeIn 0.5s ease;
+    }
+
+    #popup img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    #popup button {
+      background: linear-gradient(90deg, #00ffaa, #00ffcc);
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #popup button:hover {
+      box-shadow: 0 0 10px #00ffaa;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #00ffaa;
+      font-size: 0.9em;
+      border-top: 1px solid #00ffaa;
+      background: #000;
+      box-shadow: 0 -2px 20px #00ffaa80;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <!-- Intro Neon -->
+  <div id="intro">
+    <h1>⚡ MCPExNghia Addons</h1>
+    <p>Neon Deluxe UI</p>
+    <!-- Thêm file âm thanh: đặt whoosh.mp3 cùng thư mục -->
+    <audio id="introSound" src="whoosh.mp3"></audio>
+  </div>
+
+  <header>
+    <h1>⚡ MCPExNghia Addons</h1>
+    <div class="keybox" id="keyBox">
+      <input type="password" id="adminKey" placeholder="🔑 Nhập key admin" />
+      <button onclick="checkKey()">Xác nhận</button>
+    </div>
+  </header>
+
+  <div id="addons-container"></div>
+
+  <div id="popup">
+    <div class="content">
+      <img id="popupImg" src="">
+      <h2 id="popupName"></h2>
+      <p id="popupDesc"></p>
+      <a id="popupLink" href="#" target="_blank">
+        <button>⬇️ Tải về</button>
+      </a>
+      <br><br>
+      <button onclick="closePopup()">Đóng</button>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 MCPExNghia | Neon Deluxe UI ✨
+  </footer>
+
+  <script>
+    // ===== Hiệu ứng intro =====
+    window.addEventListener('load', () => {
+      const sound = document.getElementById('introSound');
+      setTimeout(() => {
+        document.getElementById('intro').style.display = 'none';
+      }, 2000);
+      sound.volume = 0.5;
+      sound.play().catch(()=>{});
+    });
+
+    const SECRET_KEY = "mcpexnghia2025";
+    let addons = [];
+
+    async function loadAddons() {
+      const res = await fetch("addons.json");
+      addons = await res.json();
+      renderAddons();
+    }
+
+    function renderAddons() {
+      const container = document.getElementById("addons-container");
+      container.innerHTML = "";
+      addons.forEach((a, i) => {
+        container.innerHTML += `
+          <div class="card" onclick="showPopup(${i})">
+            <img src="${a.image}" alt="${a.name}">
+            <h3>${a.name}</h3>
+            <p>${a.description}</p>
+            <button>Chi tiết</button>
+          </div>
+        `;
+      });
+    }
+
+    function showPopup(index) {
+      const a = addons[index];
+      document.getElementById("popupImg").src = a.image;
+      document.getElementById("popupName").innerText = a.name;
+      document.getElementById("popupDesc").innerText = a.description;
+      document.getElementById("popupLink").href = a.download;
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    function checkKey() {
+      const key = document.getElementById("adminKey").value;
+      if (key === SECRET_KEY) {
+        alert("✅ Đăng nhập admin thành công!");
+        document.getElementById("keyBox").style.display = "none";
+      } else {
+        alert("❌ Key sai!");
+      }
+    }
+
+    loadAddons();
+  </script>
+</body>
+</html>
