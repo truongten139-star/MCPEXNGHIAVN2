@@ -1,57 +1,72 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>MCPEX NGHIA VN • Store</title>
-<link rel="stylesheet" href="/style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCPEX NGHIA VN • Store</title>
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-<header class="topbar">
-  <div class="brand">MCPEX NGHIA VN</div>
-  <div class="controls">
-    <input id="search" placeholder="Tìm addon, mô tả, tag..." />
-    <select id="tagFilter"><option value="">Tất cả tag</option></select>
-    <button id="clearFilters">X</button>
-    <button id="reload">⟳</button>
-    <a id="adminLink" href="/admin.html">Admin</a>
-  </div>
-</header>
+  <header class="topbar">
+    <div class="brand">MCPEX NGHIA VN</div>
+    <nav class="nav">
+      <a href="/" class="nav-item">Trang chủ</a>
+      <a href="#" id="openCategories" class="nav-item">Danh mục</a>
+      <a href="/admin.html" class="nav-item">Admin</a>
+      <div class="nav-item admin-input" id="menuAdminInput">
+        <input id="menuAdminKey" type="password" placeholder="Nhập admin key" />
+        <button id="menuLoginBtn">Login</button>
+      </div>
+    </nav>
+  </header>
 
-<main class="container">
-  <section class="hero">
-    <h1>Addon Store</h1>
-    <p class="muted">Tải addons, maps và resource packs cho server của bạn.</p>
-  </section>
+  <main class="container">
+    <section class="hero">
+      <h1>Addon Store</h1>
+      <p class="muted">Tải addons, maps và resource packs cho server của bạn.</p>
+    </section>
 
-  <section class="toolbar">
-    <div class="stats"><span id="count">0</span> addon • <span id="updatedAt">—</span></div>
-    <div class="pager">
-      <button id="prevPage">&lt;</button>
-      <span id="pageInfo">1 / 1</span>
-      <button id="nextPage">&gt;</button>
+    <section class="controls">
+      <input id="search" placeholder="Tìm addon, mô tả, tag..." />
+      <select id="tabFilter"><option value="">Tất cả</option></select>
+      <button id="clearFilters" title="Xóa bộ lọc">X</button>
+      <button id="reload" title="Tải lại dữ liệu">⟳</button>
+    </section>
+
+    <section class="toolbar">
+      <div class="stats"><span id="count">0</span> addon • <span id="updatedAt">—</span></div>
+      <div class="pager">
+        <button id="prevPage">&lt;</button>
+        <span id="pageInfo">1 / 1</span>
+        <button id="nextPage">&gt;</button>
+      </div>
+    </section>
+
+    <section id="grid" class="grid" aria-live="polite"></section>
+    <div id="empty" class="empty hidden">Không tìm thấy addon nào.</div>
+  </main>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button id="closeModal" class="modal-close">✕</button>
+      <img id="modalImg" src="/assets/fallback.png" alt="" />
+      <div class="modal-info">
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+        <div id="modalTags" class="tags"></div>
+        <div class="meta-row"><span id="modalSize" class="small"></span></div>
+        <div class="modal-actions">
+          <a id="modalDownload" class="btn primary" target="_blank" rel="noreferrer">Tải về</a>
+          <button id="modalCloseBtn" class="btn">Đóng</button>
+        </div>
+      </div>
     </div>
-  </section>
-
-  <section id="grid" class="grid" aria-live="polite"></section>
-  <div id="empty" class="empty hidden">Không tìm thấy addon nào.</div>
-</main>
-
-<div id="modal" class="modal hidden" role="dialog" aria-modal="true">
-  <div class="modal-card">
-    <button id="closeModal">✕</button>
-    <img id="modalImg" src="/assets/fallback.png" />
-    <h2 id="modalTitle"></h2>
-    <p id="modalDesc"></p>
-    <div id="modalTags" class="tags"></div>
-    <div class="modal-actions">
-      <a id="modalDownload" class="btn primary" target="_blank" rel="noreferrer">Tải về</a>
-      <span id="modalSize" class="small"></span>
-    </div>
   </div>
-</div>
 
-<footer class="footer"><small>MCPEX NGHIA VN • Final</small></footer>
-<script src="/script.js" defer></script>
+  <footer class="footer">
+    <small>MCPEX NGHIA VN • Final</small>
+  </footer>
+
+  <script src="/script.js" defer></script>
 </body>
 </html>
