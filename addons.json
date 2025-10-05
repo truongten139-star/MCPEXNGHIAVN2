@@ -1,14 +1,44 @@
 [
   {
     "name": "Horror Craft",
-    "description": "Thế giới Minecraft tối tăm, ám ảnh với các sinh vật kinh dị.",
-    "image": "https://i.ibb.co/p6MRZ8b6/horror-craft.png",
-    "download": "https://www.mediafire.com/file/example1.mcaddon"
+    "description": "Thế giới Minecraft tối tăm, ám ảnh với các sinh vật kinh dị",
+    "image": "images/horror.jpg",
+    "download": "https://example.com/download/horror",
+    "featured": true
   },
   {
-    "name": "Zombie Tận Thế",
-    "description": "Sinh tồn giữa bầy zombie hung hãn trong thế giới tàn khốc.",
-    "image": "https://i.ibb.co/M5Z72jCC/zombie-tanthe.png",
-    "download": "https://www.mediafire.com/file/example2.mcaddon"
+    "name": "Pet Expansion",
+    "description": "Thêm nhiều thú cưng dễ thương vào Minecraft",
+    "image": "images/pet.jpg",
+    "download": "https://example.com/download/pet",
+    "featured": false
+  },
+  {
+    "name": "Tech Machines",
+    "description": "Máy móc và công nghệ hiện đại trong Minecraft",
+    "image": "images/tech.jpg",
+    "download": "https://example.com/download/tech",
+    "featured": true
+  },
+  {
+    "name": "Survival Plus",
+    "description": "Nâng cấp trải nghiệm sinh tồn với vật phẩm và thử thách mới",
+    "image": "images/survival.jpg",
+    "download": "https://example.com/download/survival",
+    "featured": false
+  },
+  {
+    "name": "Magic Spells",
+    "description": "Thêm hệ thống phép thuật và phù thủy vào thế giới Minecraft",
+    "image": "images/magic.jpg",
+    "download": "https://example.com/download/magic",
+    "featured": false
+  },
+  {
+    "name": "Builder Tools",
+    "description": "Công cụ xây dựng cho kiến trúc sư Minecraft",
+    "image": "images/builder.jpg",
+    "download": "https://example.com/download/builder",
+    "featured": false
   }
 ]
