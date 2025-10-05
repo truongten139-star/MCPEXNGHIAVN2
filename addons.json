@@ -14,5 +14,13 @@
     "img": "/assets/fallback.png",
     "size": "12 MB",
     "tags": ["map","city"]
+  },
+  {
+    "title": "Gói Hiệu Ứng Ánh Sáng",
+    "description": "Resource pack nâng cao ánh sáng và shader nhẹ",
+    "url": "/addons/lightpack.zip",
+    "img": "/assets/fallback.png",
+    "size": "8 MB",
+    "tags": ["resource","visual"]
   }
 ]
