@@ -1,15 +1,48 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MCPEX NGHIA VN</title>
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Test MCPEX NGHIA VN</h1>
-    <div id="list" class="grid"></div>
+  <header class="topbar">
+    <div class="brand">MCPEX NGHIA VN</div>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Tìm addon, mô tả..." />
+      <button id="refresh" title="Tải lại">⟳</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="intro">
+      <h1>Addon store</h1>
+      <p class="muted">Danh sách addon máy chủ và maps. Nhấn vào thẻ để xem chi tiết hoặc tải về.</p>
+    </section>
+
+    <section id="grid" class="grid" aria-live="polite"></section>
+
+    <div id="empty" class="empty hidden">Không tìm thấy addon nào.</div>
+  </main>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button id="closeModal" class="modal-close">✕</button>
+      <img id="modalImg" src="/assets/fallback.png" alt="" />
+      <h2 id="modalTitle">Tiêu đề</h2>
+      <p id="modalDesc">Mô tả</p>
+      <div class="modal-actions">
+        <a id="modalDownload" class="btn" target="_blank" rel="noreferrer">Tải về</a>
+        <button id="modalCloseBtn" class="btn alt">Đóng</button>
+      </div>
+    </div>
   </div>
-  <script src="/script.js"></script>
+
+  <footer class="footer">
+    <small>MCPEX NGHIA VN • Demo UI</small>
+  </footer>
+
+  <script src="/script.js" defer></script>
 </body>
 </html>
