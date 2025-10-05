@@ -1,20 +1,16 @@
 [
   {
-    "id": "tanthezombie",
-    "name": "Tận Thế Zombie",
-    "description": "Addon về sinh tồn, nơi bạn phải chống lại zombie trong một thế giới tận thế.",
-    "image": "https://i.ibb.co/p6MRZ8b6/zombie.jpg",
-    "download": "https://example.com/zombie.zip",
-    "featured": true,
-    "createdAt": "2025-10-05T20:00:00Z"
+    "id": 1696550400000,
+    "title": "Tận Thế Zombie",
+    "description": "Chống lại zombie trong thế giới sinh tồn",
+    "url": "/addons/zombie.mcaddon",
+    "img": "/assets/zombie.jpg"
   },
   {
-    "id": "horrorcraft",
-    "name": "Horror Craft",
-    "description": "Herobrine is back, dành cho những bạn thích sự kinh dị.",
-    "image": "https://i.ibb.co/M5Z72jCC/horror.jpg",
-    "download": "https://example.com/horror.zip",
-    "featured": true,
-    "createdAt": "2025-10-04T18:00:00Z"
+    "id": 1696550700000,
+    "title": "Horror Craft",
+    "description": "Addon kinh dị, âm thanh rùng rợn, bóng tối bao trùm",
+    "url": "/addons/horror-craft.mcaddon",
+    "img": "/assets/horror-craft.jpg"
   }
 ]
