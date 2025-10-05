@@ -1,29 +1,4 @@
 [
-  {
-    "id": "zombie-001",
-    "title": "Tận Thế Zombie",
-    "description": "Chống lại zombie trong thế giới sinh tồn",
-    "url": "/addons/zombie.mcaddon",
-    "img": "/assets/fallback.png",
-    "size": "4 MB",
-    "tags": ["zombie","survival"]
-  },
-  {
-    "id": "city-001",
-    "title": "Map Thành Phố",
-    "description": "Map thành phố hiện đại, thích hợp cho roleplay",
-    "url": "/addons/city.zip",
-    "img": "/assets/fallback.png",
-    "size": "12 MB",
-    "tags": ["map","city"]
-  },
-  {
-    "id": "light-001",
-    "title": "Gói Hiệu Ứng Ánh Sáng",
-    "description": "Resource pack nâng cao ánh sáng và shader nhẹ",
-    "url": "/addons/lightpack.zip",
-    "img": "/assets/fallback.png",
-    "size": "8 MB",
-    "tags": ["resource","visual"]
-  }
+  {"id":"zombie-001","title":"Tận Thế Zombie","description":"Chống lại zombie","url":"/addons/zombie.mcaddon","img":"/assets/fallback.png","size":"4 MB","tags":["zombie","survival"],"createdAt":"2025-10-06T00:00:00Z"},
+  {"id":"city-001","title":"Map Thành Phố","description":"Map thành phố hiện đại","url":"/addons/city.zip","img":"/assets/fallback.png","size":"12 MB","tags":["map","city"],"createdAt":"2025-10-06T00:00:00Z"}
 ]
