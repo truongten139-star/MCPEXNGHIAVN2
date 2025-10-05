@@ -1,5 +1,6 @@
 [
   {
+    "id": "zombie-001",
     "title": "Tận Thế Zombie",
     "description": "Chống lại zombie trong thế giới sinh tồn",
     "url": "/addons/zombie.mcaddon",
@@ -8,6 +9,7 @@
     "tags": ["zombie","survival"]
   },
   {
+    "id": "city-001",
     "title": "Map Thành Phố",
     "description": "Map thành phố hiện đại, thích hợp cho roleplay",
     "url": "/addons/city.zip",
@@ -16,6 +18,7 @@
     "tags": ["map","city"]
   },
   {
+    "id": "light-001",
     "title": "Gói Hiệu Ứng Ánh Sáng",
     "description": "Resource pack nâng cao ánh sáng và shader nhẹ",
     "url": "/addons/lightpack.zip",
