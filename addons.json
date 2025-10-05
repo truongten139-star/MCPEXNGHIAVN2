@@ -2,43 +2,15 @@
   {
     "name": "Horror Craft",
     "description": "Thế giới Minecraft tối tăm, ám ảnh với các sinh vật kinh dị",
-    "image": "images/horror.jpg",
+    "image": "https://i.ibb.co/M5Z72jCC/horror.jpg",
     "download": "https://example.com/download/horror",
     "featured": true
   },
   {
-    "name": "Pet Expansion",
-    "description": "Thêm nhiều thú cưng dễ thương vào Minecraft",
-    "image": "images/pet.jpg",
-    "download": "https://example.com/download/pet",
-    "featured": false
-  },
-  {
-    "name": "Tech Machines",
-    "description": "Máy móc và công nghệ hiện đại trong Minecraft",
-    "image": "images/tech.jpg",
-    "download": "https://example.com/download/tech",
-    "featured": true
-  },
-  {
-    "name": "Survival Plus",
-    "description": "Nâng cấp trải nghiệm sinh tồn với vật phẩm và thử thách mới",
-    "image": "images/survival.jpg",
-    "download": "https://example.com/download/survival",
-    "featured": false
-  },
-  {
-    "name": "Magic Spells",
-    "description": "Thêm hệ thống phép thuật và phù thủy vào thế giới Minecraft",
-    "image": "images/magic.jpg",
-    "download": "https://example.com/download/magic",
-    "featured": false
-  },
-  {
-    "name": "Builder Tools",
-    "description": "Công cụ xây dựng cho kiến trúc sư Minecraft",
-    "image": "images/builder.jpg",
-    "download": "https://example.com/download/builder",
+    "name": "Tân Thế Zombie",
+    "description": "Sinh tồn giữa đại dịch zombie với vũ khí và căn cứ nâng cấp",
+    "image": "https://i.ibb.co/p6MRZ8b6/zombie.jpg",
+    "download": "https://example.com/download/zombie",
     "featured": false
   }
 ]
