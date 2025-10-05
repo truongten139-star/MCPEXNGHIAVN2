@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCPExNghia Addons</title>
+  <meta name="description" content="Danh sách addons Minecraft - load từ addons.json trên GitHub" />
+  <style>
+    :root{--bg:#050007;--card:#0b0220;--accent:#a86bff;--muted:#c9b3ff}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,var(--bg),#0a0013);color:#fff}
+    header{padding:18px 12px;text-align:center;background:linear-gradient(90deg,#20002c,#3b0066);box-shadow:0 3px 20px rgba(0,0,0,.5)}
+    header h1{margin:0;font-size:20px;letter-spacing:.6px}
+    .container{max-width:1100px;margin:18px auto;padding:0 12px}
+    .topbar{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap}
+    .search input{width:360px;max-width:60vw;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.06);background:#0a0012;color:#fff}
+    .actions{display:flex;gap:8px;align-items:center}
+    .btn{background:var(--accent);color:#000;font-weight:700;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--muted)}
+    .grid{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+    .card{width:260px;background:var(--card);border-radius:12px;padding:12px;border:1px solid rgba(124,72,190,.12);box-shadow:0 8px 24px rgba(0,0,0,.5)}
+    .card img{width:100%;height:150px;object-fit:cover;border-radius:8px;margin-bottom:8px}
+    .card h3{margin:6px 0;color:#f0e6ff;font-size:16px}
+    .card p{margin:0;color:#d6c3f2;font-size:13px;height:42px;overflow:hidden}
+    .card .meta{display:flex;gap:8px;align-items:center;margin-top:12px;justify-content:space-between}
+    .link{background:linear-gradient(90deg,#ffd86b,#ff83e6);padding:8px 10px;border-radius:8px;color:#000;font-weight:700;text-decoration:none}
+    footer{text-align:center;padding:18px;color:var(--muted);margin-top:20px;font-size:13px}
+    /* Panel */
+    .panel{position:fixed;top:6%;left:50%;transform:translateX(-50%);width:92%;max-width:960px;background:linear-gradient(180deg,#0b0026,#2a0050);color:#fff;border-radius:12px;padding:16px;box-shadow:0 24px 80px rgba(0,0,0,0.75);z-index:12000;display:none}
+    .panel.open{display:block}
+    .panel-grid{display:grid;grid-template-columns:1fr 320px;gap:12px}
+    .panel img{width:100%;height:320px;object-fit:cover;border-radius:8px}
+    .panel h2{margin:0 0 8px 0}
+    .panel p{margin:0 0 12px 0;color:#e6d6ff}
+    .panel .right{background:rgba(0,0,0,.06);padding:12px;border-radius:8px}
+    .panel .download{display:inline-block;padding:10px 12px;border-radius:8px;background:var(--accent);color:#000;font-weight:700;text-decoration:none}
+    .panel-close{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:10px;border:none;background:rgba(0,0,0,0.24);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:12001}
+    .panel-close:focus{outline:2px solid rgba(255,255,255,.12)}
+    /* Admin form (collapse) */
+    .admin-wrap{background:linear-gradient(180deg,#100018,#1a0030);padding:12px;border-radius:10px;margin-bottom:14px;border:1px solid rgba(124,72,190,.12);display:none}
+    .admin-wrap.open{display:block}
+    .admin-row{display:flex;gap:8px;flex-wrap:wrap}
+    .admin-row input[type="text"],.admin-row input[type="url"],.admin-row textarea{flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,.06);background:#070016;color:#fff}
+    .admin-row input[type="file"]{color:#fff}
+    /* small */
+    @media (max-width:920px){.panel-grid{grid-template-columns:1fr}}
+    @media (max-width:480px){
+      .card{width:94%}
+      .search input{width:56vw}
+      .panel{top:4%;padding:12px}
+      .panel img{height:200px}
+      .panel-close{width:48px;height:48px;right:8px;top:8px}
+    }
+  </style>
+</head>
+<body>
+  <header><h1>MCPExNghia Addons</h1></header>
+
+  <div class="container">
+    <div class="topbar">
+      <div class="left"><div class="search"><input id="q" placeholder="Tìm addon, ví dụ: horror, zombie" aria-label="Tìm addon"></div></div>
+      <div class="actions">
+        <button id="btnToggleAdmin" class="btn ghost" title="Mở khu vực admin">Admin</button>
+        <button id="btnLogin" class="btn">Đăng nhập Admin</button>
+        <button id="btnLogout" class="btn ghost" style="display:none">Đăng xuất</button>
+      </div>
+    </div>
+
+    <div id="adminWrap" class="admin-wrap" aria-hidden="true">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <strong>Admin Panel (cục bộ)</strong>
+        <small style="color:var(--muted)">Chỉ chạy cục bộ hoặc trên server bạn quản lý</small>
+      </div>
+      <div class="admin-row" style="margin-bottom:8px">
+        <input id="aName" placeholder="Tên addon">
+        <input id="aDownload" placeholder="Link tải (url)">
+      </div>
+      <div class="admin-row" style="margin-bottom:8px">
+        <textarea id="aDesc" placeholder="Mô tả" rows="3"></textarea>
+      </div>
+      <div class="admin-row" style="align-items:center">
+        <input id="aImage" placeholder="Link ảnh (url)">
+        <label style="display:flex;align-items:center;gap:8px;color:var(--muted)"><input id="aFeatured" type="checkbox">Nổi bật</label>
+        <button id="btnAddAddon" class="btn">Thêm</button>
+      </div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px">Lưu ý: nếu dùng server, gọi API để lưu; hiện chỉ lưu trong bộ nhớ trang và không ghi lên GitHub.</div>
+    </div>
+
+    <h3 style="text-align:center;margin-top:8px">Addons</h3>
+    <div id="grid" class="grid" aria-live="polite"></div>
+    <footer>© MCPExNghia · Dự án demo</footer>
+  </div>
+
+  <!-- Panel chi tiết addon -->
+  <div id="addonPanel" class="panel" role="dialog" aria-modal="true" aria-labelledby="addonTitle">
+    <button id="panelClose" class="panel-close" aria-label="Đóng">✕</button>
+    <div class="panel-grid">
+      <div>
+        <img id="panelImg" src="" alt="">
+      </div>
+      <div class="right">
+        <h2 id="addonTitle">Tên addon</h2>
+        <p id="addonDesc">Mô tả ngắn</p>
+        <div style="margin-top:12px">
+          <a id="addonDownload" class="download" href="#" target="_blank" rel="noopener">Tải addon</a>
+        </div>
+        <div style="margin-top:12px;color:#d9c0ff;font-size:13px" id="addonMeta"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // CONFIG: đổi USERNAME/REPO/BRANCH nếu cần
+    const ADDONS_JSON_PATH = 'https://raw.githubusercontent.com/truongten139-star/MCPEXNGHIAVN2/main/addons.json';
+    let addonsList = [];
+    const tokenKey = 'mcpex_admin';
+
+    // DOM
+    const grid = document.getElementById('grid');
+    const qInput = document.getElementById('q');
+    const panel = document.getElementById('addonPanel');
+    const panelClose = document.getElementById('panelClose');
+    const panelImg = document.getElementById('panelImg');
+    const addonTitle = document.getElementById('addonTitle');
+    const addonDesc = document.getElementById('addonDesc');
+    const addonDownload = document.getElementById('addonDownload');
+    const addonMeta = document.getElementById('addonMeta');
+    const btnLogin = document.getElementById('btnLogin');
+    const btnLogout = document.getElementById('btnLogout');
+    const btnToggleAdmin = document.getElementById('btnToggleAdmin');
+    const adminWrap = document.getElementById('adminWrap');
+    const aName = document.getElementById('aName');
+    const aDesc = document.getElementById('aDesc');
+    const aImage = document.getElementById('aImage');
+    const aDownload = document.getElementById('aDownload');
+    const aFeatured = document.getElementById('aFeatured');
+    const btnAddAddon = document.getElementById('btnAddAddon');
+
+    // Load JSON (raw GitHub)
+    async function loadAddons(){
+      try {
+        const res = await fetch(ADDONS_JSON_PATH, {cache:'no-store'});
+        if (!res.ok) throw new Error('Không tải được addons.json: ' + res.status);
+        addonsList = await res.json();
+        renderAddons(addonsList);
+      } catch (e) {
+        grid.innerHTML = '<div style="color:#f6c6ff;padding:18px">Lỗi tải dữ liệu addons.json</div>';
+        console.error(e);
+      }
+    }
+
+    // Render
+    function renderAddons(list){
+      const q = (qInput.value || '').toLowerCase().trim();
+      grid.innerHTML = '';
+      const filtered = list.filter(a => {
+        if (!q) return true;
+        return (a.name||'').toLowerCase().includes(q) || (a.description||'').toLowerCase().includes(q);
+      });
+      if (filtered.length === 0) grid.innerHTML = '<div style="color:#d6b3ff;padding:18px">Không tìm thấy addon nào</div>';
+      filtered.forEach(a => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img loading="lazy" src="${escapeHtml(a.image||'')}" alt="${escapeHtml(a.name)}">
+          <h3>${escapeHtml(a.name)}</h3>
+          <p>${escapeHtml(a.description)}</p>
+          <div class="meta">
+            <a class="link" href="${escapeHtml(a.download||'#')}" target="_blank" rel="noopener">Tải</a>
+            <div style="display:flex;gap:8px;align-items:center">
+              <button class="btn ghost" data-name="${escapeHtml(a.name)}" aria-label="Xem chi tiết">Chi tiết</button>
+            </div>
+          </div>
+        `;
+        const btn = card.querySelector('button');
+        btn.addEventListener('click', () => openAddonPanel(a));
+        grid.appendChild(card);
+      });
+      updateAuthUI(); // thêm nút xóa nếu admin
+    }
+
+    // Panel open/close
+    function openAddonPanel(a){
+      panelImg.src = a.image || '';
+      panelImg.alt = a.name || 'addon';
+      addonTitle.textContent = a.name || '';
+      addonDesc.textContent = a.description || '';
+      addonDownload.href = a.download || '#';
+      addonMeta.textContent = (a.featured ? 'Nổi bật • ' : '') + (a.createdAt ? ('Ngày tạo: '+a.createdAt) : '');
+      panel.classList.add('open');
+      panelClose.focus();
+    }
+    function closeAddonPanel(){ panel.classList.remove('open'); }
+
+    // Events
+    panelClose.addEventListener('click', closeAddonPanel);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAddonPanel(); });
+    qInput.addEventListener('input', () => renderAddons(addonsList));
+
+    // Admin simple (cục bộ)
+    btnLogin.addEventListener('click', () => {
+      const key = prompt('Nhập admin key để đăng nhập:');
+      if (!key) return;
+      const expected = 'mcpexnghia2025';
+      if (key === expected){
+        localStorage.setItem(tokenKey, '1');
+        alert('Đăng nhập admin thành công');
+        updateAuthUI();
+      } else alert('Sai key');
+    });
+    btnLogout.addEventListener('click', () => {
+      localStorage.removeItem(tokenKey);
+      alert('Đã đăng xuất');
+      updateAuthUI();
+    });
+
+    btnToggleAdmin.addEventListener('click', () => {
+      adminWrap.classList.toggle('open');
+      adminWrap.setAttribute('aria-hidden', adminWrap.classList.contains('open') ? 'false' : 'true');
+    });
+
+    btnAddAddon.addEventListener('click', () => {
+      const name = aName.value.trim();
+      const desc = aDesc.value.trim();
+      const image = aImage.value.trim();
+      const download = aDownload.value.trim();
+      const featured = aFeatured.checked;
+      if (!name || !desc) return alert('Vui lòng điền tên và mô tả');
+      const item = { id: Date.now().toString(), name, description: desc, image, download, featured, createdAt: new Date().toISOString() };
+      addonsList.unshift(item);
+      renderAddons(addonsList);
+      aName.value=''; aDesc.value=''; aImage.value=''; aDownload.value=''; aFeatured.checked=false;
+      alert('Đã thêm addon (chỉ trên trang này). Nếu muốn lưu vĩnh viễn, gọi API server hoặc cập nhật file trên GitHub.');
+    });
+
+    // Update UI for admin: show delete buttons
+    function updateAuthUI(){
+      const logged = !!localStorage.getItem(tokenKey);
+      btnLogin.style.display = logged ? 'none' : '';
+      btnLogout.style.display = logged ? '' : 'none';
+      document.querySelectorAll('.card').forEach(card => {
+        const existing = card.querySelector('.delete');
+        if (logged && !existing) {
+          const del = document.createElement('button');
+          del.className = 'btn ghost delete';
+          del.textContent = 'Xóa';
+          del.style.marginLeft = '8px';
+          del.addEventListener('click', () => {
+            const title = card.querySelector('h3').textContent;
+            if (!confirm('Xác nhận xóa: ' + title + '?')) return;
+            addonsList = addonsList.filter(a => a.name !== title);
+            renderAddons(addonsList);
+            alert('Đã xóa (chỉ trên trang này). Để lưu vĩnh viễn, gọi API server hoặc commit lên GitHub.');
+          });
+          const meta = card.querySelector('.meta div');
+          meta.appendChild(del);
+        } else if (!logged && existing) {
+          existing.remove();
+        }
+      });
+    }
+
+    // Utility: escape
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+    // Init
+    (function init(){
+      loadAddons();
+      if (localStorage.getItem(tokenKey)) updateAuthUI();
+    })();
+  </script>
+</body>
+</html>
