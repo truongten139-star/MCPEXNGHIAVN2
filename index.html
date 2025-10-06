@@ -3,20 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MCPEX NGHIA VN • Store</title>
+  <title>MCPEX NGHIA VN • Supper UI</title>
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">MCPEX NGHIA VN</div>
-    <nav class="nav">
-      <a href="/" class="nav-item">Trang chủ</a>
-      <a href="#" id="openCategories" class="nav-item">Danh mục</a>
-      <a href="/admin.html" class="nav-item">Admin</a>
-      <div class="nav-item admin-input" id="menuAdminInput">
-        <input id="menuAdminKey" type="password" placeholder="Nhập admin key" />
-        <button id="menuLoginBtn">Login</button>
+  <header class="topbar glass">
+    <div class="brand">
+      <img src="/assets/logo.png" alt="logo" class="logo" />
+      <div class="brand-text">
+        <div class="brand-title">MCPEX NGHIA VN</div>
+        <div class="brand-sub">Addon Store • Supper UI</div>
       </div>
+    </div>
+
+    <nav class="menu">
+      <a href="/" class="menu-item active">🏠 Trang chủ</a>
+      <a href="#" class="menu-item" id="menuAddons">📦 Addons</a>
+      <a href="#" class="menu-item" id="menuMaps">🗺️ Maps</a>
+      <a href="#" class="menu-item" id="menuPacks">🎨 Packs</a>
+      <div class="menu-spacer"></div>
+      <div class="menu-admin" id="menuAdmin">
+        <input id="menuAdminKey" type="password" placeholder="🔑 Admin key" />
+        <button id="menuLoginBtn" class="btn login">Login</button>
+      </div>
+      <a href="/admin.html" class="menu-item">🔐 Admin</a>
     </nav>
   </header>
 
@@ -27,10 +37,14 @@
     </section>
 
     <section class="controls">
-      <input id="search" placeholder="Tìm addon, mô tả, tag..." />
-      <select id="tabFilter"><option value="">Tất cả</option></select>
-      <button id="clearFilters" title="Xóa bộ lọc">X</button>
-      <button id="reload" title="Tải lại dữ liệu">⟳</button>
+      <div class="search-wrap">
+        <input id="search" placeholder="Tìm addon, mô tả, tag..." />
+      </div>
+      <div class="filters">
+        <select id="tabFilter"><option value="">Tất cả</option></select>
+        <button id="clearFilters" title="Xóa bộ lọc">X</button>
+        <button id="reload" title="Tải lại dữ liệu">⟳</button>
+      </div>
     </section>
 
     <section class="toolbar">
@@ -49,22 +63,26 @@
   <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="modal-card">
       <button id="closeModal" class="modal-close">✕</button>
-      <img id="modalImg" src="/assets/fallback.png" alt="" />
-      <div class="modal-info">
-        <h2 id="modalTitle"></h2>
-        <p id="modalDesc"></p>
-        <div id="modalTags" class="tags"></div>
-        <div class="meta-row"><span id="modalSize" class="small"></span></div>
-        <div class="modal-actions">
-          <a id="modalDownload" class="btn primary" target="_blank" rel="noreferrer">Tải về</a>
-          <button id="modalCloseBtn" class="btn">Đóng</button>
+      <div class="modal-body">
+        <div class="modal-left">
+          <img id="modalImg" src="/assets/fallback.png" alt="" />
+        </div>
+        <div class="modal-right">
+          <h2 id="modalTitle"></h2>
+          <p id="modalDesc"></p>
+          <div id="modalTags" class="tags"></div>
+          <div class="meta-row"><span id="modalSize" class="small"></span><span id="modalCreated" class="small muted"></span></div>
+          <div class="modal-actions">
+            <a id="modalDownload" class="btn primary" target="_blank" rel="noreferrer">Tải về</a>
+            <button id="modalCloseBtn" class="btn">Đóng</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <footer class="footer">
-    <small>MCPEX NGHIA VN • Final</small>
+    <div>MCPEX NGHIA VN • Supper UI</div>
   </footer>
 
   <script src="/script.js" defer></script>
