@@ -7,14 +7,24 @@
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">MCPEX NGHIA VN — Admin</div>
-    <nav class="nav">
-      <a href="/index.html" class="nav-item">Store</a>
-      <div class="nav-item admin-input">
+  <div class="bg-anim"></div>
+
+  <header class="topbar glass">
+    <div class="brand">
+      <img src="/assets/logo.png" alt="logo" class="logo" />
+      <div class="brand-text">
+        <div class="brand-title">MCPEX NGHIA VN — Admin</div>
+        <div class="brand-sub">Supper UI • Quản lý addons</div>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <a href="/index.html" class="menu-item">Store</a>
+      <div class="menu-spacer"></div>
+      <div class="menu-admin">
         <input id="keyInput" type="password" placeholder="Admin key" />
-        <button id="loginBtn">Login</button>
-        <button id="logoutBtn" class="hidden">Logout</button>
+        <button id="loginBtn" class="btn login">Login</button>
+        <button id="logoutBtn" class="btn alt hidden">Logout</button>
       </div>
     </nav>
   </header>
@@ -26,7 +36,6 @@
         <input id="uploadFile" type="file" />
         <button id="btnExport" class="btn alt">Xuất JSON</button>
       </div>
-
       <div id="adminList" class="grid"></div>
     </section>
   </main>
@@ -34,17 +43,19 @@
   <div id="formModal" class="modal hidden">
     <div class="modal-card">
       <button id="closeForm" class="modal-close">✕</button>
-      <h2 id="formTitle">Thêm addon</h2>
-      <label>Tiêu đề<input id="f_title" /></label>
-      <label>Mô tả<textarea id="f_description"></textarea></label>
-      <label>URL tải<input id="f_url" /></label>
-      <label>Ảnh<input id="f_img" /></label>
-      <label>Kích thước<input id="f_size" /></label>
-      <label>Tags<input id="f_tags" /></label>
-      <div class="form-actions">
-        <button id="saveBtn" class="btn primary">Lưu</button>
-        <button id="cancelBtn" class="btn alt">Hủy</button>
-        <button id="deleteBtn" class="btn danger hidden">Xóa</button>
+      <div class="modal-body form-body">
+        <h2 id="formTitle">Thêm / Sửa addon</h2>
+        <label>Tiêu đề <input id="f_title" /></label>
+        <label>Mô tả <textarea id="f_description"></textarea></label>
+        <label>URL tải <input id="f_url" /></label>
+        <label>Ảnh (path) <input id="f_img" /></label>
+        <label>Kích thước <input id="f_size" /></label>
+        <label>Tags (phân tách bằng dấu phẩy) <input id="f_tags" /></label>
+        <div class="form-actions">
+          <button id="saveBtn" class="btn primary">Lưu</button>
+          <button id="cancelBtn" class="btn alt">Hủy</button>
+          <button id="deleteBtn" class="btn danger hidden">Xóa</button>
+        </div>
       </div>
     </div>
   </div>
