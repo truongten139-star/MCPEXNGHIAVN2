@@ -12,12 +12,17 @@ app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(PUBLIC));
 
-function readData(){ try { return JSON.parse(fs.readFileSync(DATA_PATH,'utf8')); } catch(e){ return []; } }
-function writeData(d){ fs.writeFileSync(DATA_PATH, JSON.stringify(d, null, 2)); }
-function authenticateHeader(req){
+function readData() {
+  try { return JSON.parse(fs.readFileSync(DATA_PATH, 'utf8')); }
+  catch (e) { return []; }
+}
+function writeData(d) {
+  fs.writeFileSync(DATA_PATH, JSON.stringify(d, null, 2));
+}
+function authenticateHeader(req) {
   const auth = req.headers.authorization || '';
   if (!auth) return false;
-  const token = auth.replace('Bearer ','').trim();
+  const token = auth.replace('Bearer ', '').trim();
   return token === 'admin' || token === (process.env.ADMIN_KEY || 'mcpex-secret-2025');
 }
 
@@ -44,7 +49,7 @@ app.post('/api/addons', (req, res) => {
   if (!authenticateHeader(req)) return res.status(401).json({ message: 'Unauthorized' });
   const payload = req.body || {};
   const data = readData();
-  const id = payload.id || (payload.title||'item').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9\-]/g,'') + '-' + Date.now();
+  const id = payload.id || (payload.title || 'item').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '') + '-' + Date.now();
   const item = Object.assign({ id, createdAt: new Date().toISOString() }, payload);
   data.unshift(item);
   writeData(data);
@@ -55,7 +60,7 @@ app.put('/api/addons', (req, res) => {
   if (!authenticateHeader(req)) return res.status(401).json({ message: 'Unauthorized' });
   const payload = req.body || {};
   const data = readData();
-  const idx = data.findIndex(x=>x.id === payload.id);
+  const idx = data.findIndex(x => x.id === payload.id);
   if (idx === -1) return res.status(404).json({ message: 'Not found' });
   data[idx] = Object.assign(data[idx], payload, { updatedAt: new Date().toISOString() });
   writeData(data);
@@ -67,7 +72,7 @@ app.delete('/api/addons', (req, res) => {
   const id = req.query.id;
   if (!id) return res.status(400).json({ message: 'Missing id' });
   let data = readData();
-  data = data.filter(x=>x.id !== id);
+  data = data.filter(x => x.id !== id);
   writeData(data);
   res.json({ deleted: id });
 });
@@ -86,8 +91,8 @@ app.post('/api/upload', (req, res) => {
       const dest = path.join(destDir, name);
       fs.renameSync(file.filepath, dest);
       return res.json({ url: '/addons/' + name });
-    } catch(e){
-      const tmpPath = file.filepath || file.path || file.file;
+    } catch (e) {
+      const tmpPath = file.filepath || file.path || '';
       return res.status(200).json({ url: '/tmp/' + path.basename(tmpPath), note: 'Saved to /tmp, move manually to public/addons for permanent access' });
     }
   });
@@ -97,25 +102,27 @@ app.post('/api/stats', (req, res) => {
   try {
     const data = req.body || {};
     const line = JSON.stringify({ ts: new Date().toISOString(), ...data }) + '\n';
-    try { fs.appendFileSync(STATS_LOG, line); } catch(e){}
+    try { fs.appendFileSync(STATS_LOG, line); } catch (e) {}
     return res.json({ ok: true });
-  } catch(e){
+  } catch (e) {
     return res.status(400).json({ message: 'Bad request' });
   }
 });
 
 app.get('/api/stats', (req, res) => {
   try {
-    const txt = fs.existsSync(STATS_LOG) ? fs.readFileSync(STATS_LOG,'utf8') : '';
+    const txt = fs.existsSync(STATS_LOG) ? fs.readFileSync(STATS_LOG, 'utf8') : '';
     res.type('text/plain').send(txt);
-  } catch(e){ res.status(500).json({ message: 'Error' }); }
+  } catch (e) {
+    res.status(500).json({ message: 'Error' });
+  }
 });
 
 app.get('*', (req, res) => {
-  const file = path.join(PUBLIC, req.path === '/' ? 'index.html' : req.path);
+  const file = path.join(PUBLIC, req.path === '/' ? 'index.html' : decodeURIComponent(req.path));
   if (fs.existsSync(file) && fs.statSync(file).isFile()) return res.sendFile(file);
   return res.sendFile(path.join(PUBLIC, 'index.html'));
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, ()=> console.log('Server running on', PORT));
+app.listen(PORT, () => console.log('Server running on', PORT));
