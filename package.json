@@ -2,7 +2,9 @@
   "name": "mcpex-supper-ui",
   "version": "1.0.0",
   "engines": { "node": "18.x" },
+  "scripts": { "start": "node server.js" },
   "dependencies": {
+    "express": "^4.18.2",
     "formidable": "^3.2.0"
   }
 }
