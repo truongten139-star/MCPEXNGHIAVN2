@@ -1,75 +1,104 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MCPEX NGHIA VN • Supper UI</title>
-  <link rel="stylesheet" href="/style.css" />
-  <meta name="theme-color" content="#071022">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>MCPEX NGHIA VN • Addon Store • Supper UI</title>
+  <style>
+    :root{
+      --bg:#030417; --panel:#071022; --muted:#9aa3ad; --accent:#7c3aed; --accent-2:#06b6d4;
+      --card:#0c1220; --gap:16px; --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,#020205,#051029);color:#eaf2ff;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue";-webkit-font-smoothing:antialiased}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:rgba(255,255,255,0.02);border-bottom:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(8px)}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#06b6d4)}
+    .brand-title{font-weight:900;font-size:16px}
+    .brand-sub{font-size:12px;color:var(--muted)}
+    .menu{display:flex;gap:8px}
+    .menu a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px}
+    .menu a.active{background:linear-gradient(90deg,rgba(124,58,237,0.12),rgba(6,182,212,0.06));color:#fff}
+    .container{max-width:1140px;margin:22px auto;padding:0 20px}
+    .hero{display:flex;justify-content:space-between;gap:18px;align-items:center}
+    .hero h1{margin:0;font-size:28px}
+    .muted{color:var(--muted)}
+    .hero-cta{display:flex;gap:10px;margin-top:10px;align-items:center;flex-wrap:wrap}
+    #search{width:320px;max-width:60vw;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:#071022;color:#eaf2ff}
+    select,button{padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:#071022;color:#eaf2ff;cursor:pointer}
+    .btn{border:0}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff}
+    .toolbar{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:10px;flex-wrap:wrap}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap}
+    .tab{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.06);color:var(--muted);cursor:pointer;background:transparent}
+    .tab.active{background:linear-gradient(90deg,rgba(124,58,237,0.12),rgba(6,182,212,0.06));color:#fff}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--gap);margin-top:16px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.03));border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 30px 90px rgba(3,6,20,0.7)}
+    .thumb{width:100%;height:150px;background:#0a1222}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .card-body{padding:12px}
+    .card-body h3{margin:0 0 6px;font-size:16px}
+    .card-body p{margin:0;color:var(--muted);font-size:13px;line-height:1.25}
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+    .small{font-size:12px;color:var(--muted)}
+    .empty{margin:20px;text-align:center;color:var(--muted)}
+    .pager{display:flex;gap:8px;align-items:center}
+    .modal{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:flex;align-items:center;justify-content:center;padding:20px;z-index:60}
+    .modal.hidden{display:none}
+    .modal-card{width:100%;max-width:860px;background:#081426;border:1px solid rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;box-shadow:0 40px 140px rgba(2,6,23,0.8)}
+    .modal-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);background:#071022}
+    .modal-title{font-weight:800}
+    .modal-close{background:transparent;border:0;color:var(--muted);font-size:20px;cursor:pointer}
+    .modal-body{display:flex;gap:16px;padding:16px;flex-wrap:wrap}
+    .modal-left img{width:420px;height:260px;object-fit:cover;border-radius:12px;background:#0a1222}
+    .modal-right{flex:1;min-width:260px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .tag{background:rgba(255,255,255,0.06);color:var(--muted);padding:6px 10px;border-radius:999px;font-size:12px}
+    .modal-actions{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+    .footer{text-align:center;padding:18px;color:var(--muted);margin-top:24px}
+    @media (max-width:980px){ .modal-left img{width:100%;height:220px} #search{width:220px} }
+    @media (max-width:600px){ .menu a{display:none} .tabs{gap:6px} .grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))} }
+  </style>
 </head>
 <body>
-  <div class="bg-anim"></div>
-
-  <header class="topbar glass">
+  <header class="topbar">
     <div class="brand">
-      <img src="/assets/logo.png" alt="logo" class="logo" />
-      <div class="brand-text">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
         <div class="brand-title">MCPEX NGHIA VN</div>
         <div class="brand-sub">Addon Store • Supper UI</div>
       </div>
     </div>
-
     <nav class="menu">
-      <a href="/" class="menu-item active">🏠 Trang chủ</a>
-      <a href="#addons" class="menu-item">📦 Addons</a>
-      <a href="#maps" class="menu-item">🗺️ Maps</a>
-      <a href="#packs" class="menu-item">🎨 Packs</a>
-      <div class="menu-spacer"></div>
-
-      <div class="menu-admin" id="menuAdmin">
-        <input id="menuAdminKey" type="password" placeholder="🔑 Admin key" />
-        <button id="menuLoginBtn" class="btn login">Login</button>
-      </div>
-      <a href="/admin.html" class="menu-item">🔐 Admin</a>
+      <a href="#" class="active">🏠 Trang chủ</a>
     </nav>
   </header>
 
   <main class="container">
     <section class="hero">
-      <div class="hero-left">
+      <div>
         <h1>Addon Store</h1>
-        <p class="muted">Tải addons, maps và resource packs cho server. Giao diện Supper UI, mượt, glow và tối ưu mobile.</p>
+        <div class="muted">Tải addons, maps và resource packs cho server. Giao diện mượt, glow, tối ưu mobile.</div>
         <div class="hero-cta">
-          <input id="search" placeholder="Tìm addon, mô tả, tag..." />
-          <div class="hero-actions">
-            <select id="tabFilter"><option value="">Tất cả</option></select>
-            <button id="reload" class="btn alt">⟳ Tải lại</button>
-          </div>
+          <input id="search" placeholder="Tìm addon, mô tả, tag..."/>
+          <select id="tagSelect"><option value="">Tất cả tag</option></select>
+          <button id="reloadBtn" class="btn">⟳ Tải lại</button>
         </div>
       </div>
-      <div class="hero-right">
-        <div class="stat-card">
-          <div class="stat-number" id="count">0</div>
-          <div class="stat-label">Addon hiện có</div>
-        </div>
-        <div class="stat-card small">
-          <div class="stat-label muted">Cập nhật</div>
-          <div id="updatedAt" class="muted">—</div>
-        </div>
+      <div>
+        <div class="small">Tổng số: <span id="count">0</span></div>
+        <div class="small">Cập nhật: <span id="updated">—</span></div>
       </div>
     </section>
 
     <section class="toolbar">
-      <div class="tabs">
-        <button class="tab active" data-filter="">Tất cả</button>
-        <button class="tab" data-filter="zombie">Zombie</button>
-        <button class="tab" data-filter="map">Map</button>
-        <button class="tab" data-filter="survival">Survival</button>
-      </div>
+      <div class="tabs" id="tabs"></div>
       <div class="pager">
-        <button id="prevPage" class="btn">‹</button>
-        <span id="pageInfo">1 / 1</span>
-        <button id="nextPage" class="btn">›</button>
+        <button id="prevBtn">‹</button>
+        <span id="pageInfo" class="small">1 / 1</span>
+        <button id="nextBtn">›</button>
       </div>
     </section>
 
@@ -79,32 +108,217 @@
 
   <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="modal-card">
-      <button id="closeModal" class="modal-close">✕</button>
+      <div class="modal-head">
+        <div class="modal-title" id="modalTitle">Chi tiết</div>
+        <button id="closeModal" class="modal-close" aria-label="Đóng">✕</button>
+      </div>
       <div class="modal-body">
         <div class="modal-left">
-          <img id="modalImg" src="/assets/fallback.png" alt="" />
+          <img id="modalImg" alt="Ảnh addon"/>
         </div>
         <div class="modal-right">
-          <h2 id="modalTitle"></h2>
-          <p id="modalDesc"></p>
+          <p id="modalDesc" class="muted"></p>
           <div id="modalTags" class="tags"></div>
-          <div class="meta-row">
-            <span id="modalSize" class="small"></span>
-            <span id="modalCreated" class="small muted"></span>
-          </div>
+          <div class="small"><span id="modalSize"></span> • <span id="modalCreated"></span></div>
           <div class="modal-actions">
             <a id="modalDownload" class="btn primary" target="_blank" rel="noreferrer">Tải về</a>
-            <button id="modalCloseBtn" class="btn alt">Đóng</button>
+            <button id="modalCloseBtn" class="btn">Đóng</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="footer">
-    <div>MCPEX NGHIA VN • Supper UI • Final</div>
-  </footer>
+  <footer class="footer">MCPEX NGHIA VN • Supper UI • Final</footer>
 
-  <script src="/script.js" defer></script>
+  <!-- Dữ liệu addons gói sẵn -->
+  <script type="application/json" id="addonsData">
+  [
+    {
+      "id": "zombie-001",
+      "title": "Tận Thế Zombie",
+      "description": "Chế độ chống lại làn sóng zombie, thêm vũ khí và nhiệm vụ.",
+      "url": "#",
+      "img": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='720'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c3aed'/%3E%3Cstop offset='1' stop-color='%2306b6d4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='720' fill='url(%23g)'/%3E%3Ctext x='50' y='100' fill='white' font-size='48' font-family='sans-serif'%3EZombie%3C/text%3E%3C/svg%3E",
+      "size": "4 MB",
+      "tags": ["zombie","survival"],
+      "createdAt": "2025-10-06T00:00:00Z"
+    },
+    {
+      "id": "city-001",
+      "title": "Map Thành Phố",
+      "description": "Bản đồ thành phố hiện đại, nhiều công trình, phù hợp roleplay.",
+      "url": "#",
+      "img": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='720'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2306b6d4'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='720' fill='url(%23g)'/%3E%3Ctext x='50' y='100' fill='white' font-size='48' font-family='sans-serif'%3ECity Map%3C/text%3E%3C/svg%3E",
+      "size": "12 MB",
+      "tags": ["map","city"],
+      "createdAt": "2025-10-06T00:00:00Z"
+    },
+    {
+      "id": "pack-001",
+      "title": "Resource Pack HD",
+      "description": "Gói texture HD nhẹ, tối ưu FPS cho máy yếu.",
+      "url": "#",
+      "img": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='720'%3E%3Crect width='1200' height='720' fill='%23081426'/%3E%3Ccircle cx='200' cy='180' r='140' fill='%237c3aed'/%3E%3Ccircle cx='520' cy='360' r='180' fill='%2306b6d4'/%3E%3Ctext x='50' y='100' fill='white' font-size='48' font-family='sans-serif'%3EPack HD%3C/text%3E%3C/svg%3E",
+      "size": "8 MB",
+      "tags": ["pack","hd"],
+      "createdAt": "2025-10-06T00:00:00Z"
+    }
+  ]
+  </script>
+
+  <!-- JS gói sẵn -->
+  <script>
+    const PER_PAGE = 8;
+    const grid = document.getElementById('grid');
+    const empty = document.getElementById('empty');
+    const searchEl = document.getElementById('search');
+    const tagSelect = document.getElementById('tagSelect');
+    const reloadBtn = document.getElementById('reloadBtn');
+    const countEl = document.getElementById('count');
+    const updatedEl = document.getElementById('updated');
+    const tabsEl = document.getElementById('tabs');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const pageInfo = document.getElementById('pageInfo');
+
+    const modal = document.getElementById('modal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalTags = document.getElementById('modalTags');
+    const modalSize = document.getElementById('modalSize');
+    const modalCreated = document.getElementById('modalCreated');
+    const modalDownload = document.getElementById('modalDownload');
+
+    let addons = [];
+    let filtered = [];
+    let page = 1;
+
+    // Load data từ script JSON
+    (function init(){
+      const raw = document.getElementById('addonsData').textContent.trim();
+      try { addons = JSON.parse(raw); } catch(e){ addons = []; }
+      countEl.textContent = addons.length;
+      updatedEl.textContent = new Date().toLocaleString();
+      setupTags(addons);
+      bindEvents();
+      applyFilters();
+    })();
+
+    function bindEvents(){
+      searchEl.addEventListener('input', debounce(applyFilters, 200));
+      tagSelect.addEventListener('change', applyFilters);
+      reloadBtn.addEventListener('click', ()=> { searchEl.value=''; tagSelect.value=''; applyFilters(); });
+      prevBtn.addEventListener('click', ()=> { if (page>1){ page--; renderPage(); scrollTop(); } });
+      nextBtn.addEventListener('click', ()=> { const total = Math.max(1, Math.ceil(filtered.length / PER_PAGE)); if (page<total){ page++; renderPage(); scrollTop(); } });
+      closeModalBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+      // tạo event cho nút Đóng trong modal-actions (gắn sau khi render)
+    }
+
+    function setupTags(list){
+      const set = new Set();
+      list.forEach(a => (a.tags||[]).forEach(t => set.add(t)));
+      // select
+      tagSelect.innerHTML = '<option value="">Tất cả tag</option>';
+      Array.from(set).sort().forEach(t => {
+        const opt = document.createElement('option'); opt.value = t; opt.textContent = t; tagSelect.appendChild(opt);
+      });
+      // tabs
+      tabsEl.innerHTML = '';
+      const allBtn = makeTabBtn('Tất cả', '');
+      allBtn.classList.add('active');
+      tabsEl.appendChild(allBtn);
+      Array.from(set).sort().forEach(t => tabsEl.appendChild(makeTabBtn(t, t)));
+    }
+
+    function makeTabBtn(label, value){
+      const b = document.createElement('button');
+      b.className = 'tab';
+      b.textContent = label;
+      b.dataset.value = value;
+      b.addEventListener('click', ()=>{
+        document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        tagSelect.value = value;
+        applyFilters();
+      });
+      return b;
+    }
+
+    function applyFilters(){
+      const q = searchEl.value.trim().toLowerCase();
+      const tag = tagSelect.value;
+      filtered = addons.filter(a => {
+        const inQ = !q || (safe(a.title).includes(q) || safe(a.description).includes(q) || (a.tags||[]).join(' ').toLowerCase().includes(q));
+        const inTag = !tag || (a.tags||[]).includes(tag);
+        return inQ && inTag;
+      });
+      page = 1;
+      renderPage();
+    }
+
+    function renderPage(){
+      const total = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+      const start = (page-1)*PER_PAGE;
+      const items = filtered.slice(start, start+PER_PAGE);
+      pageInfo.textContent = page+' / '+total;
+      prevBtn.disabled = page<=1;
+      nextBtn.disabled = page>=total;
+      renderGrid(items);
+    }
+
+    function renderGrid(list){
+      grid.innerHTML = '';
+      if (!list.length){ empty.classList.remove('hidden'); return; }
+      empty.classList.add('hidden');
+      list.forEach(a => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="thumb"><img src="${a.img||''}" alt="${escapeHtml(a.title)}"></div>
+          <div class="card-body">
+            <h3>${escapeHtml(a.title)}</h3>
+            <p>${escapeHtml(a.description)}</p>
+            <div class="meta">
+              <a class="btn primary" href="${a.url||'#'}" target="_blank" rel="noreferrer">Tải về</a>
+              <span class="small">${a.size||''}</span>
+            </div>
+          </div>
+        `;
+        card.querySelector('.btn.primary').addEventListener('click', e => e.stopPropagation());
+        card.addEventListener('click', ()=> openModal(a));
+        grid.appendChild(card);
+      });
+    }
+
+    function openModal(a){
+      modalTitle.textContent = a.title || 'Chi tiết';
+      modalDesc.textContent = a.description || '';
+      modalImg.src = a.img || '';
+      modalTags.innerHTML = (a.tags||[]).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join(' ');
+      modalSize.textContent = a.size || '';
+      modalCreated.textContent = a.createdAt ? new Date(a.createdAt).toLocaleString() : '';
+      modalDownload.href = a.url || '#';
+      modal.classList.remove('hidden');
+      // gắn lại nút Đóng mỗi lần mở
+      attachModalCloseBtn();
+    }
+
+    function attachModalCloseBtn(){
+      const btn = document.getElementById('modalCloseBtn');
+      if (btn){ btn.onclick = closeModal; }
+    }
+
+    function closeModal(){ modal.classList.add('hidden'); }
+    function scrollTop(){ window.scrollTo({ top: 140, behavior: 'smooth' }); }
+    function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms); }; }
+    function escapeHtml(s=''){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]); }
+    function safe(s=''){ return String(s).toLowerCase(); }
+  </script>
 </body>
 </html>
